@@ -1,12 +1,12 @@
 {
-  "name": "grunt-project",
-  "description": "",
+  "name": "grunt-boilerplate-v2",
+  "description": "grunt boilerplate for front end developers and webdesigners",
   "main": "",
   "authors": [
     "Valerio <omegaiori@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/vlrprbttst/grunt-boilerplate",
+  "homepage": "https://github.com/vlrprbttst/grunt-boilerplate-v2",
   "moduleType": [
     "node"
   ],

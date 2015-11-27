@@ -1,5 +1,5 @@
 {
-  "name": "grunt-project",
+  "name": "grunt-boilerplate-v2",
   "version": "0.1.0",
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
