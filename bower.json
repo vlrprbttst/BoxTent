@@ -1,0 +1,23 @@
+{
+  "name": "grunt-project",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Valerio <omegaiori@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/vlrprbttst/grunt-boilerplate",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~1.9.1"
+  }
+}

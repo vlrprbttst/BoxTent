@@ -1,0 +1,29 @@
+// basic reset
+@mixin reset {
+  margin:0;
+  padding:0;
+}
+
+//clear fix
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table; 
+    clear: both;
+  }
+}
+
+//vertical align anything
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+//mediaquery shorthand: @include respond-to(480) {}
+
+@mixin respond-to($breakpoint) {
+    @media all and (max-width: $breakpoint + px) { @content; }
+}

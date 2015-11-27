@@ -1,0 +1,23 @@
+// base
+@import "compass";
+@import "partials/_variables.scss";
+@import "partials/_mixin.scss";
+@import "partials/_normalize.scss";
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    background: #fff;
+    font-family: arial;
+    height: 100%;
+
+}
