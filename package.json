@@ -15,6 +15,7 @@
     "grunt-delete-sync": "0.0.2",
     "grunt-ftpush": "^0.3.3",
     "grunt-newer": "^0.7.0",
-    "grunt-postcss": "^0.7.1"
+    "grunt-postcss": "^0.7.1",
+    "grunt-delete-sync": "0.0.2"
   }
 }
