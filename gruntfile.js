@@ -104,7 +104,6 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     'bower_components/jquery/jquery.js',
-                    'bower_components/imagesloaded/imagesloaded.pkgd.js',
                     'js/libs/*.js',
                     'js/custom/*.js'
                 ],
