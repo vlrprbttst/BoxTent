@@ -17,7 +17,7 @@ The gems used in this project are Sass and Compass, type these in the terminal a
 
 Open the terminal in the root of the project and type `npm install`. Once finished, type `bower install` for the bower dependencies.
 
-Once done, type `grunt`, a browser window will open with your website running and will watch for changes and live reload accordingly. If you get an error for postcss or autoprefixer, run ```npm install grunt-postcss autoprefixer cssnano``` to re-install postcss and its plugins.
+Once done, type `grunt rebuild` to build the `_site` folder and then type `grunt`, a browser window will open with your website running and will watch for changes and live reload accordingly.
 
 If something looks wrong on the first launch, stop grunt with `ctrl+c` and type `grunt rebuild`. Wait till it finishes rebuilding the `_site` folder, and then type `grunt` again. You should be good to go now! The page opened by BrowserSync is the `index.html` in the `_site` folder.
 
