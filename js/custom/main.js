@@ -1,1 +1,2 @@
-console.log("done")
+console.log("done");
+$("body").css("background","red");

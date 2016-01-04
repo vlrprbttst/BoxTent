@@ -98,17 +98,24 @@ module.exports = function(grunt) {
         }, //end imagemin
 
         concat: {
+            options: {
+                separator: ';',
+            },
             dist: {
                 src: [
-                'bower_components/jquery/jquery.js',
-                'js/libs/*.js',
-                'js/custom/*.js'
+                    'bower_components/jquery/jquery.js',
+                    'bower_components/imagesloaded/imagesloaded.pkgd.js',
+                    'js/libs/*.js',
+                    'js/custom/*.js'
                 ],
                 dest: 'js/build/production.js'
             }
         }, //end concat
 
         uglify: {
+            options: {
+                mangle: false
+            },
             dist: {
                 src: 'js/build/production.js',
                 dest: '_site/js/production.min.js'
