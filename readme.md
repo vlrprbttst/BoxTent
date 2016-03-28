@@ -45,8 +45,3 @@ Critical (AKA Above the Fold) CSS is created in the `critical-css` folder and au
 * if you need a js library which cannot be installed via bower, save it in the `js/libs/` folder
 * if you need to write custom javascript, you can do it in the `js/custom/main.js` file
 * all javascript are concatenated in a single production file `js/production.js` and then minified in `_site/js/production.min.js`
-
-
-#### DEPLOY
-
-edit the `ftpush` task in the gruntfile (usually just edit the host name, the default port is 21), open the .ftppass file in the root of the project and fill it with real data. From now on, if you type `grunt ftpush`, the `_site` folder will be automatically uploaded on your server
