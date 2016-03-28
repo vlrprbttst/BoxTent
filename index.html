@@ -13,6 +13,9 @@
     <!-- http://realfavicongenerator.net/ -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="description" content="this is a great grunt boilerplate">
+    <!-- build:css inline -->
+    <link rel="stylesheet" href="critical-css/critical.css">
+    <!-- /build -->
     <!-- facebook -->
     <meta property="og:title" content="content">
     <meta property="og:type" content="website">
@@ -41,18 +44,18 @@
 
 <body>
     <script charset="utf-8">
-    var cb = function() {
-        var l = document.createElement('link');
-        l.rel = 'stylesheet';
-        l.href = 'css/main.css';
-        var h = document.getElementsByTagName('head')[0].lastChild;
-        h.parentNode.insertBefore(l, h);
-    };
-    var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
-    if (raf)
-        raf(cb);
-    else
-        window.addEventListener('load', cb);
+        var cb = function() {
+            var l = document.createElement('link');
+            l.rel = 'stylesheet';
+            l.href = 'css/main.css';
+            var h = document.getElementsByTagName('head')[0].lastChild;
+            h.parentNode.insertBefore(l, h);
+        };
+        var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+        if (raf)
+            raf(cb);
+        else
+            window.addEventListener('load', cb);
     </script>
     <!-- JS scripts -->
     <script src="js/production.min.js"></script>

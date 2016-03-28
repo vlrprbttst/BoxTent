@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['*.html'],
-                tasks: ['newer:htmlmin']
+                tasks: ['processhtml', 'newer:htmlmin']
             },
             images: {
                 files: ['images/**/*.{png,jpg,gif,svg}'],
@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 
             css: {
                 files: ['sass/**/*.scss'],
-                tasks: ['sass', 'postcss'],
+                tasks: ['sass', 'postcss', 'penthouse'],
                 options: {
                     spawn: false,
                 }
@@ -70,8 +70,8 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true, // Enable dynamic expansion.
                     cwd: './', // Src matches are relative to this path.
-                    src: ['*.html'], // Actual pattern(s) to match.
-                    dest: '_site', // Destination path prefix.
+                    src: ['_site/*.html'], // Actual pattern(s) to match.
+                    dest: '', // Destination path prefix.
                     ext: '.html', // Dest filepaths will have this extension.
                     extDot: 'first' // Extensions in filenames begin after the first dot
                 }]
@@ -151,7 +151,7 @@ module.exports = function(grunt) {
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: ['_site/**']
+                    src: ['_site/**', '!.sass-cache']
                 },
                 options: {
                     server: {
@@ -163,21 +163,23 @@ module.exports = function(grunt) {
             }
         },
 
-        ftpush: {
+        penthouse: {
+            extract: {
+                outfile: 'critical-css/critical.css',
+                css: '_site/css/main.css',
+                url: '_site/index.html',
+                width: 1200,
+                height: 500
+            },
+        },
+
+        processhtml: {
             build: {
-                auth: {
-                    host: 'ftp.valeriopierbattista.com',
-                    port: 21,
-                    authKey: 'key1' //ftp login is in the .ftppass file, remember adding it to the exclusions in .gitignore if you are publishing the repo on github
-                },
-                src: '_site', //root
-                dest: '/www/test', //destination folder
-                exclusions: ['**/.DS_Store'],
-                // keep : ['blog','cv','projects'], // SUPER IMPORTANT! check what resources should STAY on the server, for example your wordpress installation or other subfolders you use for other projects. else they'll get wiped out
-                simple: false,
-                useList: false
+                files: {
+                    '_site/index.html': ['index.html']
+                }
             }
-        }
+        },
     });
 
 
@@ -191,10 +193,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-delete-sync');
-    grunt.loadNpmTasks('grunt-ftpush');
+    grunt.loadNpmTasks('grunt-penthouse');
+    grunt.loadNpmTasks('grunt-processhtml');
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt rebuild
-    grunt.registerTask('rebuild', ['htmlmin', 'sass', 'concat', 'uglify', 'postcss', 'imagemin', 'delete_sync']);
+    grunt.registerTask('rebuild', ['sass','postcss', 'penthouse', 'processhtml','htmlmin', 'concat', 'uglify', 'imagemin']);
 };
