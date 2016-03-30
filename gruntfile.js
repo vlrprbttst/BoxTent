@@ -20,13 +20,8 @@ module.exports = function(grunt) {
             },
             images: {
                 files: ['images/**/*.{png,jpg,gif,svg}'],
-                tasks: ['newer:imagemin']
+                tasks: ['newer:imagemin', 'newer:responsive_images']
             }, // watch images added to src
-
-            deleting: {
-                files: ['images/**/*.{png,jpg,gif}'],
-                tasks: ['delete_sync']
-            }, // end of delete sync
 
             scripts: {
                 files: ['js/libs/*.js', 'js/custom/*.js'],
@@ -77,14 +72,6 @@ module.exports = function(grunt) {
                 }]
             }
         },
-
-        delete_sync: {
-            dist: {
-                cwd: '_site/images',
-                src: ['**'],
-                syncWith: 'images'
-            }
-        }, // end of delete sync
 
         imagemin: {
             dynamic: {
@@ -180,6 +167,33 @@ module.exports = function(grunt) {
                 }
             }
         },
+
+        responsive_images: {
+            myTask: {
+                options: {
+                    newFilesOnly: true,
+                    sizes: [{
+                        name: 'small',
+                        width: 320
+                    }, {
+                        name: 'large',
+                        width: 640
+                    }, {
+                        name: "large",
+                        width: 1024,
+                        suffix: "_x2",
+                        quality: 60
+                    }]
+                },
+                files: [{
+                    expand: true,
+                    src: ['**/*.{jpg,gif,png}'],
+                    cwd: 'images',
+                    dest: '_site/images'
+                }]
+            }
+        },
+        clean: ["_site"]
     });
 
 
@@ -192,12 +206,13 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-delete-sync');
     grunt.loadNpmTasks('grunt-penthouse');
     grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-responsive-images');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt rebuild
-    grunt.registerTask('rebuild', ['sass','postcss', 'penthouse', 'processhtml','htmlmin', 'concat', 'uglify', 'imagemin']);
+    grunt.registerTask('build', ['clean','sass', 'postcss', 'processhtml','penthouse', 'htmlmin', 'concat', 'uglify', 'imagemin', 'responsive_images']);
 };
