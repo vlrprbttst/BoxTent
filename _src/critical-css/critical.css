@@ -1,7 +1,10 @@
 html {
   font-family: sans-serif;
+  /* 1 */
   -ms-text-size-adjust: 100%;
+  /* 2 */
   -webkit-text-size-adjust: 100%;
+  /* 2 */
 }
 
 body {
@@ -14,13 +17,13 @@ html {
 }
 
 *,
-:after,
-:before {
+*:before,
+*:after {
   box-sizing: inherit;
 }
 
 body {
-  background: #fff;
+  background: brown;
   font-family: arial;
   height: 100%;
 }

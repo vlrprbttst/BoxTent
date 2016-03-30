@@ -15,25 +15,25 @@ module.exports = function(grunt) {
 
         watch: {
             content: {
-                files: ['*.html'],
-                tasks: ['processhtml', 'newer:htmlmin']
+                files: ['_src/**/*.html'],
+                tasks: ['copy:the_html']
             },
             images: {
-                files: ['images/**/*.{png,jpg,gif,svg}'],
+                files: ['_src/images/**/*.{png,jpg,gif,svg}'],
                 tasks: ['newer:imagemin', 'newer:responsive_images']
             }, // watch images added to src
 
-            scripts: {
+            /* serve in dist scripts: {
                 files: ['js/libs/*.js', 'js/custom/*.js'],
                 tasks: ['concat', 'uglify'],
                 options: {
                     spawn: false,
                 }
-            }, //end of watch scripts
+            }, //end of watch scripts */
 
             css: {
-                files: ['sass/**/*.scss'],
-                tasks: ['sass', 'postcss', 'penthouse'],
+                files: ['_src/sass/**/*.scss'],
+                tasks: ['sass', 'postcss:dev'],
                 options: {
                     spawn: false,
                 }
@@ -77,9 +77,9 @@ module.exports = function(grunt) {
             dynamic: {
                 files: [{
                     expand: true, // Enable dynamic expansion
-                    cwd: 'images/', // source images (not compressed)
+                    cwd: '_src/images/', // source images (not compressed)
                     src: ['**/*.{png,jpg,gif,svg}'], // Actual patterns to match
-                    dest: '_site/images/' // Destination of compressed files
+                    dest: '_dev/images/' // Destination of compressed files
                 }]
             }
         }, //end imagemin
@@ -115,34 +115,47 @@ module.exports = function(grunt) {
                     compass: 'true'
                 },
                 files: {
-                    '_site/css/main.css': 'sass/main.scss'
+                    '_dev/css/main.css': '_src/sass/main.scss'
                 }
             }
         }, //end of sass
 
         postcss: {
-            options: {
-                map: true,
-                processors: [
-                    require('autoprefixer')({
-                        browsers: 'last 2 version, IE 9'
-                    }), // add vendor prefixes. for more: https://github.com/ai/browserslist
-                    require('cssnano')() // minify the result
-                ]
+
+            dev: {
+                options: {
+                    map: true,
+                    processors: [
+                        require('autoprefixer')({
+                            browsers: 'last 2 version, IE 9'
+                        }),
+
+                    ]
+                },
+                src: '_dev/css/main.css'
             },
-            dist: {
+            build: {
+                options: {
+                    map: false,
+                    processors: [
+                        require('autoprefixer')({
+                            browsers: 'last 2 version, IE 9'
+                        }),
+                        require('cssnano')()
+                    ]
+                },
                 src: '_site/css/main.css'
             }
-        },
+        }, //postcss
 
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: ['_site/**', '!.sass-cache']
+                    src: ['_dev/**', '_src/!.sass-cache']
                 },
                 options: {
                     server: {
-                        baseDir: "_site/"
+                        baseDir: "_dev/"
                     },
                     ghostMode: false, // don't sync scrolling across devices
                     watchTask: true
@@ -152,9 +165,9 @@ module.exports = function(grunt) {
 
         penthouse: {
             extract: {
-                outfile: 'critical-css/critical.css',
-                css: '_site/css/main.css',
-                url: '_site/index.html',
+                outfile: '_src/critical-css/critical.css',
+                css: '_dev/css/main.css',
+                url: '_src/index.html',
                 width: 1200,
                 height: 500
             },
@@ -163,7 +176,7 @@ module.exports = function(grunt) {
         processhtml: {
             build: {
                 files: {
-                    '_site/index.html': ['index.html']
+                    '_dev/index.html': ['_src/index.html']
                 }
             }
         },
@@ -188,12 +201,34 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     src: ['**/*.{jpg,gif,png}'],
-                    cwd: 'images',
-                    dest: '_site/images'
+                    cwd: '_src/images',
+                    dest: '_dev/images'
                 }]
             }
         },
-        clean: ["_site"]
+
+        clean: ["_site"],
+
+        copy: {
+         the_css: {
+             files: [{
+                 expand: true,
+                 dot: true,
+                 cwd: 'css',
+                 dest: '../_site/css/',
+                 src: ['**/*.css']
+             }]
+         },
+         the_html: {
+             files: [{
+                 expand: true,
+                 dot: true,
+                 cwd: '_src',
+                 dest: '_dev/',
+                 src: ['**/*.html']
+             }]
+         },
+     }
     });
 
 
@@ -210,6 +245,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
