@@ -210,25 +210,43 @@ module.exports = function(grunt) {
         clean: ["_site"],
 
         copy: {
-         the_css: {
-             files: [{
-                 expand: true,
-                 dot: true,
-                 cwd: 'css',
-                 dest: '../_site/css/',
-                 src: ['**/*.css']
-             }]
-         },
-         the_html: {
-             files: [{
-                 expand: true,
-                 dot: true,
-                 cwd: '_src',
-                 dest: '_dev/',
-                 src: ['**/*.html']
-             }]
-         },
-     }
+            the_css: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: 'css',
+                    dest: '../_site/css/',
+                    src: ['**/*.css']
+                }]
+            },
+            the_html: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '_src',
+                    dest: '_dev/',
+                    src: ['**/*.html']
+                }]
+            },
+            the_bower_components: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: './',
+                    dest: '_dev/js/libs',
+                    src: ['bower_components/jquery/jquery.js','bower_components/FitText.js/jquery.fittext.js']
+                }]
+            },
+            the_js: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '_src',
+                    dest: '_dev/',
+                    src: ['js/**/*.js']
+                }]
+            },
+        }
     });
 
 
@@ -250,5 +268,5 @@ module.exports = function(grunt) {
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt rebuild
-    grunt.registerTask('build', ['clean','sass', 'postcss', 'processhtml','penthouse', 'htmlmin', 'concat', 'uglify', 'imagemin', 'responsive_images']);
+    grunt.registerTask('build', ['clean', 'sass', 'postcss', 'processhtml', 'penthouse', 'htmlmin', 'concat', 'uglify', 'imagemin', 'responsive_images']);
 };
