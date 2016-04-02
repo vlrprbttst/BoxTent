@@ -64,9 +64,10 @@ body {
   font-family: arial;
   height: 100%;
   padding: 0;
-  -webkit-transform: translateX(-200px);
-  -ms-transform: translateX(-200px);
-  transform: translateX(-200px);
+}
+
+h1 {
+  color: red;
 }
 
 .container {
