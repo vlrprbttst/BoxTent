@@ -16,7 +16,32 @@ html {
 }
 
 body {
-    background: brown;
+    background:#eee;
     font-family: arial;
     height: 100%;
+    padding: 0;
+    transform:translateX(-200px);
+}
+
+.container {
+    max-width:800px;
+    height: 100%;
+    background: #fff;
+    @include clearfix;
+    margin: 0 auto;
+}
+img {
+    width: 80%;
+}
+.left,.right {
+    float: left;
+    height: 100%;
+}
+.left {
+    width: 70%;
+    background:blue;
+}
+.right {
+    background: pink;
+    width: 30%;
 }

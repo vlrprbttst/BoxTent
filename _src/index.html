@@ -9,7 +9,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>title</title>
+    <title>sample workflow</title>
     <!-- http://realfavicongenerator.net/ -->
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <meta name="description" content="this is a great grunt boilerplate">
@@ -43,7 +43,27 @@
 </head>
 
 <body>
-    hello motherfucker!!
+    <div class="container">
+        <div class="left">
+            <h1>
+                hello this is a test
+            </h1>
+            <img src="images/image.png">
+        </div>
+        <div class="right">
+            <h4>
+                sidebar
+            </h4>
+            <ul>
+                <li>hello</li>
+                <li>asdasd</li>
+                <li>assda</li>
+                <li>asdasdasd</li>
+            </ul>
+            <button>change color</button>
+        </div>
+
+    </div>
     <script charset="utf-8">
         var cb = function() {
             var l = document.createElement('link');
@@ -58,8 +78,11 @@
         else
             window.addEventListener('load', cb);
     </script>
-    <!-- JS scripts -->
-    <script src="js/production.min.js"></script>
-</body>
 
+    <!-- build:js js/production.min.js -->
+    <script src="js/libs/jquery/jquery.js"></script>
+    <script src="js/libs/FitText.js/jquery.fittext.js"></script>
+    <script src="js/custom/main.js"></script>
+    <!-- /build -->
+</body>
 </html>

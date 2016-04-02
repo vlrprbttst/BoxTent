@@ -17,7 +17,6 @@
     "grunt-newer": "^0.7.0",
     "grunt-penthouse": "^0.3.0",
     "grunt-postcss": "^0.7.1",
-    "grunt-processhtml": "^0.3.13",
-    "grunt-responsive-images": "^0.1.7"
+    "grunt-processhtml": "^0.3.13"
   }
 }

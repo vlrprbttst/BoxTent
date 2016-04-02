@@ -363,8 +363,37 @@ html {
   box-sizing: inherit; }
 
 body {
-  background: brown;
+  background: #eee;
   font-family: arial;
+  height: 100%;
+  padding: 0;
+  -webkit-transform: translateX(-200px);
+      -ms-transform: translateX(-200px);
+          transform: translateX(-200px); }
+
+.container {
+  max-width: 800px;
+  height: 100%;
+  background: #fff;
+  margin: 0 auto; }
+  .container:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+img {
+  width: 80%; }
+
+.left, .right {
+  float: left;
   height: 100%; }
+
+.left {
+  width: 70%;
+  background: blue; }
+
+.right {
+  background: pink;
+  width: 30%; }
 
 /*# sourceMappingURL=main.css.map */

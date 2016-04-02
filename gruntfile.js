@@ -20,20 +20,20 @@ module.exports = function(grunt) {
             },
             images: {
                 files: ['_src/images/**/*.{png,jpg,gif,svg}'],
-                tasks: ['newer:imagemin', 'newer:responsive_images']
+                tasks: ['newer:imagemin']
             }, // watch images added to src
 
-            /* serve in dist scripts: {
-                files: ['js/libs/*.js', 'js/custom/*.js'],
-                tasks: ['concat', 'uglify'],
+            scripts: {
+                files: ['_src/js/custom/*.js'],
+                tasks: ['copy:js'],
                 options: {
                     spawn: false,
                 }
-            }, //end of watch scripts */
+            },
 
             css: {
                 files: ['_src/sass/**/*.scss'],
-                tasks: ['sass', 'postcss:dev'],
+                tasks: ['sass', 'postcss:dev', 'penthouse', 'copy:critical_css'],
                 options: {
                     spawn: false,
                 }
@@ -64,9 +64,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true, // Enable dynamic expansion.
-                    cwd: './', // Src matches are relative to this path.
-                    src: ['_site/*.html'], // Actual pattern(s) to match.
-                    dest: '', // Destination path prefix.
+                    cwd: '_site', // Src matches are relative to this path.
+                    src: ['*.html'], // Actual pattern(s) to match.
+                    dest: '_site', // Destination path prefix.
                     ext: '.html', // Dest filepaths will have this extension.
                     extDot: 'first' // Extensions in filenames begin after the first dot
                 }]
@@ -90,11 +90,11 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    'bower_components/jquery/jquery.js',
-                    'js/libs/*.js',
-                    'js/custom/*.js'
+                    '_dev/js/libs/jquery/jquery.js',
+                    '_dev/js/libs/FitText.js/jquery.fittext.js',
+                    '_dev/js/custom/**/*.js'
                 ],
-                dest: 'js/build/production.js'
+                dest: '_site/js/production.js'
             }
         }, //end concat
 
@@ -103,7 +103,7 @@ module.exports = function(grunt) {
                 mangle: false
             },
             dist: {
-                src: 'js/build/production.js',
+                src: '_site/js/production.js',
                 dest: '_site/js/production.min.js'
             }
         }, //end uglify
@@ -121,7 +121,6 @@ module.exports = function(grunt) {
         }, //end of sass
 
         postcss: {
-
             dev: {
                 options: {
                     map: true,
@@ -138,9 +137,6 @@ module.exports = function(grunt) {
                 options: {
                     map: false,
                     processors: [
-                        require('autoprefixer')({
-                            browsers: 'last 2 version, IE 9'
-                        }),
                         require('cssnano')()
                     ]
                 },
@@ -157,7 +153,8 @@ module.exports = function(grunt) {
                     server: {
                         baseDir: "_dev/"
                     },
-                    ghostMode: false, // don't sync scrolling across devices
+                    ghostMode: false,
+                    open: false,
                     watchTask: true
                 }
             }
@@ -167,7 +164,7 @@ module.exports = function(grunt) {
             extract: {
                 outfile: '_src/critical-css/critical.css',
                 css: '_dev/css/main.css',
-                url: '_src/index.html',
+                url: '_dev/index.html',
                 width: 1200,
                 height: 500
             },
@@ -176,59 +173,76 @@ module.exports = function(grunt) {
         processhtml: {
             build: {
                 files: {
-                    '_dev/index.html': ['_src/index.html']
+                    '_site/index.html': ['_dev/index.html']
                 }
-            }
-        },
-
-        responsive_images: {
-            myTask: {
-                options: {
-                    newFilesOnly: true,
-                    sizes: [{
-                        name: 'small',
-                        width: 320
-                    }, {
-                        name: 'large',
-                        width: 640
-                    }, {
-                        name: "large",
-                        width: 1024,
-                        suffix: "_x2",
-                        quality: 60
-                    }]
-                },
-                files: [{
-                    expand: true,
-                    src: ['**/*.{jpg,gif,png}'],
-                    cwd: '_src/images',
-                    dest: '_dev/images'
-                }]
             }
         },
 
         clean: ["_site"],
 
         copy: {
-         the_css: {
-             files: [{
-                 expand: true,
-                 dot: true,
-                 cwd: 'css',
-                 dest: '../_site/css/',
-                 src: ['**/*.css']
-             }]
-         },
-         the_html: {
-             files: [{
-                 expand: true,
-                 dot: true,
-                 cwd: '_src',
-                 dest: '_dev/',
-                 src: ['**/*.html']
-             }]
-         },
-     }
+            the_css: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: 'css',
+                    dest: '../_site/css/',
+                    src: ['**/*.css']
+                }]
+            },
+            critical_css: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '_src',
+                    dest: '_dev/',
+                    src: ['critical-css/*.css']
+                }]
+            },
+            the_html: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '_src',
+                    dest: '_dev/',
+                    src: ['**/*.html']
+                }]
+            },
+            bower: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: 'bower_components',
+                    dest: '_dev/js/libs/',
+                    src: ['jquery/jquery.js', 'FitText.js/jquery.fittext.js']
+                }]
+            },
+            js: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '_src/js',
+                    dest: '_dev/js',
+                    src: ['**/*.js']
+                }]
+            },
+
+            /* for build **/
+            images: {
+                expand: true,
+                dot: true,
+                cwd: '_dev/images',
+                src: '**',
+                dest: '_site/images',
+            },
+            css_build: {
+                expand: true,
+                dot: true,
+                cwd: '_dev/css',
+                src: 'main.css',
+                dest: '_site/css',
+            },
+        }
     });
 
 
@@ -243,12 +257,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-penthouse');
     grunt.loadNpmTasks('grunt-processhtml');
-    grunt.loadNpmTasks('grunt-responsive-images');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt rebuild
-    grunt.registerTask('build', ['clean','sass', 'postcss', 'processhtml','penthouse', 'htmlmin', 'concat', 'uglify', 'imagemin', 'responsive_images']);
+    grunt.registerTask('build', ['clean', 'processhtml', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
 };
