@@ -227,6 +227,7 @@ module.exports = function(grunt) {
                 }]
             },
 
+
             /* for build **/
             images: {
                 expand: true,
@@ -262,6 +263,7 @@ module.exports = function(grunt) {
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
-    // rebuild the _site folder: type grunt rebuild
+    // rebuild the _site folder: type grunt build
     grunt.registerTask('build', ['clean', 'processhtml', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
+
 };
