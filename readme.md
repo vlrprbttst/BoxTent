@@ -96,3 +96,9 @@ Critical (AKA Above the Fold) CSS is automatically inlined on top of index.html 
 
 #### JAVASCRIPT
 * all of your javascript files are concatenated and minified in a single file called `production.min.js` and all the single `<script src=""></script>` lines you previously had on `_dev` are transformed into a single line: `<script src="js/production.min.js"></script>`.
+
+# TO DO
+
+* manage includes with processhtml
+* test workflow with more then one `.html` file
+* manage image folders syncing
