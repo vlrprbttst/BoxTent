@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             }, // watch images added to src
 
             scripts: {
-                files: ['_src/js/custom/*.js'],
+                files: ['_src/js/custom/**/*.js'],
                 tasks: ['copy:js'],
                 options: {
                     spawn: false,
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
 
             css: {
                 files: ['_src/sass/**/*.scss'],
-                tasks: ['sass', 'postcss:dev', 'penthouse', 'copy:critical_css'],
+                tasks: ['sass', 'postcss:dev', 'penthouse'],
                 options: {
                     spawn: false,
                 }
@@ -162,7 +162,7 @@ module.exports = function(grunt) {
 
         penthouse: {
             extract: {
-                outfile: '_src/critical-css/critical.css',
+                outfile: '_dev/critical-css/critical.css',
                 css: '_dev/css/main.css',
                 url: '_dev/index.html',
                 width: 1200,
@@ -188,15 +188,6 @@ module.exports = function(grunt) {
                     cwd: 'css',
                     dest: '../_site/css/',
                     src: ['**/*.css']
-                }]
-            },
-            critical_css: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: '_src',
-                    dest: '_dev/',
-                    src: ['critical-css/*.css']
                 }]
             },
             the_html: {
