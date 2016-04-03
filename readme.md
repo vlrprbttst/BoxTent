@@ -4,15 +4,16 @@
 
 This is a custom built workflow powered by Grunt, a proof of concept that tries to incorporate common modern web development best practices.
 
-This is a boilerplate that aims to be the starting point for creating (mainly) small websites. This has not been tested on big projects but it can surely be extended and improved to support more complex structures.
+This aims to be the starting point for creating (mainly) small websites. This has not been tested on big projects but it can certainly be extended and improved to support more complex structures.
 
 The workflow is structured on 3 layers:
 
 * a source directory with all your source files
-* a development directory where your source files will be transferred and transformed to suit debugging and development
+* a development directory where your source files will be transferred and postprocessed to suit debugging and development
 * a build folder with your final product, free of unnecessary files and folders and fully optimized
 
 ## Requirements
+
 You'll need to have the following items installed before continuing.
 
   * [Node.js](http://nodejs.org): Use the installer provided on the NodeJS website.
@@ -72,11 +73,11 @@ Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/critical.
 
 ## Workflow Instructions: Building the final website
 
-Once you're done, there's a new layer of automations to build the final website folder. Run `grunt build` to create (or re-create) the `_site` folder. Here's what happens:
+Once you're done, there's a new layer of automations to build the final website folder. Run `grunt build` to (re)create the `_site` folder. Here's what happens:
 
 #### CLEAN
 
-The `_site` is wiped out and cleaned completely, ready to be rebuilt.
+The `_site` folder is wiped out and cleaned completely, ready to be rebuilt.
 
 #### CSS
 
