@@ -22,6 +22,7 @@ node_modules
 bower_components
 .grunt/ftpush
 .grunt
+_site
 
 # =========================
 # Operating System Files

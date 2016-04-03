@@ -1,0 +1,19 @@
+<script charset="utf-8">
+    var cb = function() {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = 'css/main.css';
+        var h = document.getElementsByTagName('head')[0].lastChild;
+        h.parentNode.insertBefore(l, h);
+    };
+    var raf = requestAnimationFrame || mozRequestAnimationFrame || webkitRequestAnimationFrame || msRequestAnimationFrame;
+    if (raf)
+        raf(cb);
+    else
+        window.addEventListener('load', cb);
+</script>
+<!-- build:js js/production.min.js -->
+<script src="js/libs/jquery/jquery.js"></script>
+<script src="js/libs/FitText.js/jquery.fittext.js"></script>
+<script src="js/custom/main.js"></script>
+<!-- /build -->

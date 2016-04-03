@@ -16,7 +16,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['_src/**/*.html'],
-                tasks: ['copy:the_html']
+                tasks: [ /*'copy:the_html'*/ 'processhtml:dev']
             },
             images: {
                 files: ['_src/images/**/*.{png,jpg,gif,svg}'],
@@ -171,10 +171,27 @@ module.exports = function(grunt) {
         },
 
         processhtml: {
+            dev: {
+                files: [
+                    {
+                    expand: true,
+                    cwd: '_src/',
+                    src: ['**/*.html', '!_includes/**/*.html'],
+                    dest: '_dev/',
+                    ext: '.html'
+                },
+             ],
+            },
             build: {
-                files: {
-                    '_site/index.html': ['_dev/index.html']
-                }
+                files: [
+                    {
+                    expand: true,
+                    cwd: '_dev/',
+                    src: ['**/*.html'],
+                    dest: '_site/',
+                    ext: '.html'
+                },
+                ],
             }
         },
 
@@ -255,6 +272,6 @@ module.exports = function(grunt) {
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['clean', 'processhtml', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
+    grunt.registerTask('build', ['clean', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
 
 };

@@ -53,7 +53,7 @@ Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/critical.
 
 #### HTML
 
-* `.html` files are automatically moved in `_dev/`
+* at this stage of development, `.html` files are automatically moved in `_dev/` thanks to `processhtml:dev` processing includes. You will find includes in the `_includes` folder. If you don't use includes, the workflow breaks so you must use includes.
 
 #### IMAGES
 
@@ -93,13 +93,14 @@ Critical (AKA Above the Fold) CSS is automatically inlined on top of index.html 
 
 #### IMAGES
 
-* Optimized images are automatically moved from `_dev`
+* Optimized images are automatically copied from `_dev`
 
 #### JAVASCRIPT
 * all of your javascript files are concatenated and minified in a single file called `production.min.js` and all the single `<script src=""></script>` lines you previously had on `_dev` are transformed into a single line: `<script src="js/production.min.js"></script>`.
 
 # TO DO
 
-* manage includes with processhtml
+* ~~manage includes with processhtml~~
+* differentiate critical-css based on specific page.
 * test workflow with more then one `.html` file
 * manage image folders syncing
