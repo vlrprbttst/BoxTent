@@ -100,6 +100,6 @@ Critical (AKA Above the Fold) CSS is automatically inlined on top of index.html 
 
 # TO DO
 
-* manage includes with processhtml.
-* test workflow with more then one `.html` file.
-* manage image folders syncing.
+* manage includes with processhtml
+* test workflow with more then one `.html` file
+* manage image folders syncing
