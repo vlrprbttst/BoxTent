@@ -1,5 +1,32 @@
 module.exports = function(grunt) {
 
+    var destFolder = "_src/";
+    var fileExt = ".html";
+
+    var tempFileList = grunt.file.expand(
+    { },
+        [ destFolder + "*" + fileExt] // file glob pattern
+    );
+
+    var fileList = [];
+    tempFileList.forEach(function(url){
+        var pageUrl = url;
+        pageUrl = pageUrl.replace(destFolder, "");
+        pageUrl = pageUrl.replace(fileExt, "");
+        fileList.push(pageUrl);
+    })
+
+    var min = {};
+    fileList.forEach(function(name) {
+        min[name] = {
+            outfile: '_dev/critical-css/'+name+'.css',
+            css: '_dev/css/main.css',
+            url: '_dev/'+name+'.html',
+            width: 1200,
+            height: 500
+        };
+    });
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -16,7 +43,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['_src/**/*.html'],
-                tasks: [ /*'copy:the_html'*/ 'processhtml:dev']
+                tasks: ['processhtml:dev','penthouse']
             },
             images: {
                 files: ['_src/images/**/*.{png,jpg,gif,svg}'],
@@ -160,15 +187,7 @@ module.exports = function(grunt) {
             }
         },
 
-        penthouse: {
-            extract: {
-                outfile: '_dev/critical-css/critical.css',
-                css: '_dev/css/main.css',
-                url: '_dev/index.html',
-                width: 1200,
-                height: 500
-            },
-        },
+        penthouse: min,
 
         processhtml: {
             dev: {
