@@ -49,7 +49,7 @@ Here are all the automations performed while working in `_src`
 
 #### CRITICAL CSS
 
-Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page is automatically inlined in `<head>`
+Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page and is automatically inlined in `<head>`
 
 #### HTML
 
