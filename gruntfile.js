@@ -300,6 +300,6 @@ module.exports = function(grunt) {
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['clean', 'delete_sync', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
+    grunt.registerTask('build', ['clean', 'delete_sync', 'penthouse', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
 
 };
