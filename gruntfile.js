@@ -216,6 +216,14 @@ module.exports = function(grunt) {
 
         clean: ["_site"],
 
+        delete_sync: {
+          dist: {
+        	cwd: '_src',
+        	src: ['**', '!**/*.css','!_includes/**/*.html','!js/**/*.js','!sass/**/*.scss'],
+        	syncWith: '_dev'
+          }
+        },
+
         copy: {
             the_css: {
                 files: [{
@@ -287,10 +295,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-delete-sync');
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['clean', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
+    grunt.registerTask('build', ['clean', 'delete_sync', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
 
 };

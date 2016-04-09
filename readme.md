@@ -79,9 +79,13 @@ Once you're done, there's a new layer of automations to build the final website 
 
 The `_site` folder is wiped out and cleaned completely, ready to be rebuilt.
 
+#### SYNC
+
+The task `delete_sync` checks for extra files between `_dev` and `_src` (html and images for now), if they do not exist in the `_dev` directory, they are removed from `_src` to keep the folders clean of extra files. ** This is a dangerous task ** as this may delete important files, be sure to check the task and modify it if needed.
+
 #### CSS
 
-* `main.css` file is minified with cssnano (a postcss plugin)
+* `main.css` file is minified and optimized with cssnano
 
 #### HTML
 
@@ -93,10 +97,3 @@ The `_site` folder is wiped out and cleaned completely, ready to be rebuilt.
 
 #### JAVASCRIPT
 * all of your javascript files are concatenated and minified in a single file called `production.min.js` and all the single `<script src=""></script>` lines you previously had on `_dev` are transformed into a single line: `<script src="js/production.min.js"></script>`.
-
-# TO DO
-
-* ~~manage includes with processhtml~~
-* ~~differentiate critical-css based on specific page.~~
-* ~~test workflow with more then one `.html` file~~
-* manage folders syncing
