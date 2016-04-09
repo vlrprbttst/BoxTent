@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is a custom built workflow powered by Grunt, a proof of concept that tries to incorporate common modern web development best practices.
+This is a custom built workflow powered by Grunt, a proof of concept that tries to incorporate web development best practices in building a website.
 
 This aims to be the starting point for creating (mainly) small websites. This has not been tested on big projects but it can certainly be extended and improved to support more complex structures.
 
@@ -49,7 +49,7 @@ Here are all the automations performed while working in `_src`
 
 #### CRITICAL CSS
 
-Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/critical.css` and referenced in `<head>`
+Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page is automatically inlined in `<head>`
 
 #### HTML
 
@@ -83,10 +83,6 @@ The `_site` folder is wiped out and cleaned completely, ready to be rebuilt.
 
 * `main.css` file is minified with cssnano (a postcss plugin)
 
-#### CRITICAL CSS
-
-Critical (AKA Above the Fold) CSS is automatically inlined on top of index.html file with the `processhtml` task
-
 #### HTML
 
 * `.html` files are minified
@@ -101,6 +97,6 @@ Critical (AKA Above the Fold) CSS is automatically inlined on top of index.html 
 # TO DO
 
 * ~~manage includes with processhtml~~
-* differentiate critical-css based on specific page.
-* test workflow with more then one `.html` file
-* manage image folders syncing
+* ~~differentiate critical-css based on specific page.~~
+* ~~test workflow with more then one `.html` file~~
+* manage folders syncing
