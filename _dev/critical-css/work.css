@@ -1,0 +1,48 @@
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+body {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #999;
+  font-family: arial;
+  height: 100%;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  height: 100%;
+  background: #fff;
+  margin: 0 auto;
+}
+
+.container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.banner {
+  background: purple;
+  height: 500px;
+}
