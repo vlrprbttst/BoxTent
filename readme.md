@@ -62,7 +62,7 @@ Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder 
 #### JAVASCRIPT
 
 * javascript libraries are managed via bower, if you need to add any, please do it via bower
-* if you install a new js library with bower, be sure to include its path in the `copy:bower` and the `concat:dist` tasks of the gruntfile. Once done, type `copy:bower` from the shell to move them in your project. Don't forget to reference them at the bottom of your `.html` files including them inside the `processhtml` special comments like this:
+* if you install a new js library with bower, be sure to include its path in the `copy:bower` and the `concat:dist` tasks of the gruntfile. Once done, type `grunt copy:bower` from the shell to move them in your project. Don't forget to reference them at the bottom of your `.html` files including them inside the `processhtml` special comments like this:
 ```
 <!-- build:js js/production.min.js -->
 // here
@@ -97,3 +97,7 @@ The task `delete_sync` checks for extra files between `_dev` and `_src` (html an
 
 #### JAVASCRIPT
 * all of your javascript files are concatenated and minified in a single file called `production.min.js` and all the single `<script src=""></script>` lines you previously had on `_dev` are transformed into a single line: `<script src="js/production.min.js"></script>`.
+
+#TO DO
+* find a solution to this issue: https://github.com/gruntjs/grunt-contrib-imagemin/issues/356
+* make above the fold css inline only on build
