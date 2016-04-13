@@ -1,15 +1,23 @@
-# Grunt boilerplate v2
+# BoxTent
+
+> this readme is currently being updated - what you read is not final
 
 ## What is this?
 
-This is a custom built workflow powered by Grunt, a proof of concept that tries to incorporate web development best practices in building a website.
+BoxTent is a frontend infrastructure powered by [Grunt](http://gruntjs.com/ "Grunt") to build small and medium websites from scratch.
+It incorporates modern web development best practices such as:
 
-This aims to be the starting point for creating (mainly) small websites. This has not been tested on big projects but it can certainly be extended and improved to support more complex structures.
+* assets optimization
+* minification
+* above the fold css management
+* javascript concatenation
+* css preprocessing and postprocessing
+* etc.
 
 The workflow is structured on 3 layers:
 
 * a source directory with all your source files
-* a development directory where your source files will be transferred and postprocessed to suit debugging and development
+* a development directory where your source files will be transferred and processed to suit debugging and development
 * a build folder with your final product, free of unnecessary files and folders and fully optimized
 
 ## Requirements
