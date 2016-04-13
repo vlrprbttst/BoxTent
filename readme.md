@@ -99,5 +99,5 @@ The task `delete_sync` checks for extra files between `_dev` and `_src` (html an
 * all of your javascript files are concatenated and minified in a single file called `production.min.js` and all the single `<script src=""></script>` lines you previously had on `_dev` are transformed into a single line: `<script src="js/production.min.js"></script>`.
 
 #TO DO
-* ~ find a solution to this issue: https://github.com/gruntjs/grunt-contrib-imagemin/issues/356 ~
+* ~~find a solution to this issue: https://github.com/gruntjs/grunt-contrib-imagemin/issues/356~~
 * make above the fold css inline only on build
