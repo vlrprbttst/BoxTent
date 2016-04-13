@@ -41,7 +41,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['_src/**/*.html'],
-                tasks: ['processhtml:dev', 'penthouse']
+                tasks: ['newer:processhtml:dev', 'penthouse']
             },
             images: {
                 files: ['_src/images/**/*.{png,jpg,gif,svg}'],
