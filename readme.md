@@ -49,7 +49,7 @@ Here are all the automations performed while working in `_src`
 
 #### CRITICAL CSS
 
-Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page and is automatically inlined in `<head>`
+Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page, a link to it must be placed in `<head>`
 
 #### HTML
 
@@ -86,6 +86,10 @@ The task `delete_sync` checks for extra files between `_dev` and `_src` (html an
 #### CSS
 
 * `main.css` file is minified and optimized with cssnano
+
+#### CRITICAL CSS
+
+Critical (AKA Above the Fold) CSS is automatically inlined in `<head>`
 
 #### HTML
 
