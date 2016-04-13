@@ -3,13 +3,11 @@ module.exports = function(grunt) {
     var destFolder = "_src/";
     var fileExt = ".html";
 
-    var tempFileList = grunt.file.expand(
-    { },
-        [ destFolder + "*" + fileExt] // file glob pattern
+    var tempFileList = grunt.file.expand({}, [destFolder + "*" + fileExt] // file glob pattern
     );
 
     var fileList = [];
-    tempFileList.forEach(function(url){
+    tempFileList.forEach(function(url) {
         var pageUrl = url;
         pageUrl = pageUrl.replace(destFolder, "");
         pageUrl = pageUrl.replace(fileExt, "");
@@ -19,9 +17,9 @@ module.exports = function(grunt) {
     var min = {};
     fileList.forEach(function(name) {
         min[name] = {
-            outfile: '_dev/critical-css/'+name+'.css',
+            outfile: '_dev/critical-css/' + name + '.css',
             css: '_dev/css/main.css',
-            url: '_dev/'+name+'.html',
+            url: '_dev/' + name + '.html',
             width: 1200,
             height: 500
         };
@@ -43,11 +41,11 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['_src/**/*.html'],
-                tasks: ['processhtml:dev','penthouse']
+                tasks: ['processhtml:dev', 'penthouse']
             },
             images: {
                 files: ['_src/images/**/*.{png,jpg,gif,svg}'],
-                tasks: ['newer:imagemin']
+                tasks: ['newer:imagemin', 'copy:unoptimizedImage']
             }, // watch images added to src
 
             scripts: {
@@ -191,37 +189,33 @@ module.exports = function(grunt) {
 
         processhtml: {
             dev: {
-                files: [
-                    {
+                files: [{
                     expand: true,
                     cwd: '_src/',
                     src: ['**/*.html', '!_includes/**/*.html'],
                     dest: '_dev/',
                     ext: '.html'
-                },
-             ],
+                }, ],
             },
             build: {
-                files: [
-                    {
+                files: [{
                     expand: true,
                     cwd: '_dev/',
                     src: ['**/*.html'],
                     dest: '_site/',
                     ext: '.html'
-                },
-                ],
+                }, ],
             }
         },
 
         clean: ["_site"],
 
         delete_sync: {
-          dist: {
-        	cwd: '_src',
-        	src: ['**', '!**/*.css','!_includes/**/*.html','!js/**/*.js','!sass/**/*.scss'],
-        	syncWith: '_dev'
-          }
+            dist: {
+                cwd: '_src',
+                src: ['**', '!**/*.css', '!_includes/**/*.html', '!js/**/*.js', '!sass/**/*.scss'],
+                syncWith: '_dev'
+            }
         },
 
         copy: {
@@ -261,7 +255,22 @@ module.exports = function(grunt) {
                     src: ['**/*.js']
                 }]
             },
+            unoptimizedImage: {
+                expand: true,
+                cwd: '_src/images/',
+                src: ['**/*.{png,jpg,gif,svg}'],
+                dest: '_dev/images/',
 
+                filter: function(filepath) {
+
+                    var path = require('path');
+                    var dest = path.join(
+                        grunt.config('copy.main.dest'),
+                        path.basename(filepath)
+                    );
+                    return !(grunt.file.exists(dest));
+                },
+            },
 
             /* for build **/
             images: {
