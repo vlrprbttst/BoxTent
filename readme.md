@@ -1,6 +1,6 @@
 # BoxTent
 
-> this readme is currently being updated - what you read is not final
+> The plastic table-like item found in pizza boxes is called a box tent and was patented in 1983. Most people in the biz now call it a pizza saver.
 
 ## What is this?
 
