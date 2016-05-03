@@ -1,4 +1,1 @@
-$("button").click(function(){
-    $(".left").css("background","white");
-    jQuery("h1").fitText();
-});
+console.log("hey there!");

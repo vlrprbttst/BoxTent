@@ -390,7 +390,7 @@ img {
 
 .left {
   width: 70%;
-  background: blue; }
+  background: hotpink; }
 
 .right {
   background: pink;
@@ -398,9 +398,9 @@ img {
 
 .banner {
   background: purple;
-  height: 500px; }
+  height: 450px; }
 
 .inner-banner {
-  background: red; }
+  background: orange; }
 
 /*# sourceMappingURL=main.css.map */

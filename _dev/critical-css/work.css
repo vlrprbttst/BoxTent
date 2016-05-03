@@ -11,6 +11,11 @@ body {
   margin: 0;
 }
 
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
 html {
   box-sizing: border-box;
   height: 100%;
@@ -29,6 +34,10 @@ body {
   padding: 0;
 }
 
+h1 {
+  color: red;
+}
+
 .container {
   max-width: 800px;
   height: 100%;
@@ -42,11 +51,27 @@ body {
   clear: both;
 }
 
+.left,
+.right {
+  float: left;
+  height: 100%;
+}
+
+.left {
+  width: 70%;
+  background: hotpink;
+}
+
+.right {
+  background: pink;
+  width: 30%;
+}
+
 .banner {
   background: purple;
-  height: 500px;
+  height: 450px;
 }
 
 .inner-banner {
-  background: red;
+  background: orange;
 }
