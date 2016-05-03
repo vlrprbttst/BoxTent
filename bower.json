@@ -18,7 +18,6 @@
     "tests"
   ],
   "devDependencies": {
-    "jquery": "~1.9.1",
-    "FitText.js": "^1.2.0"
+    "jquery": "~1.9.1"
   }
 }

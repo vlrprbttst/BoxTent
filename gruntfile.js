@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 
             css: {
                 files: ['_src/sass/**/*.scss'],
-                tasks: ['sass', 'postcss:dev'],
+                tasks: ['sass', 'postcss:dev', 'penthouse'],
                 options: {
                     spawn: false,
                 }
@@ -116,7 +116,6 @@ module.exports = function(grunt) {
             dist: {
                 src: [
                     '_dev/js/libs/jquery/jquery.js',
-                    '_dev/js/libs/FitText.js/jquery.fittext.js',
                     '_dev/js/custom/**/*.js'
                 ],
                 dest: '_site/js/production.js'
@@ -137,7 +136,8 @@ module.exports = function(grunt) {
             dist: {
                 options: {
                     style: 'nested', //no need for config.rb
-                    compass: 'true'
+                    compass: 'true',
+                    // require: 'plugins?'
                 },
                 files: {
                     '_dev/css/main.css': '_src/sass/main.scss'
@@ -162,7 +162,15 @@ module.exports = function(grunt) {
                 options: {
                     map: false,
                     processors: [
-                        require('cssnano')()
+                        require('cssnano')({
+                            autoprefixer: {
+                                browsers: 'last 2 version, IE 9'
+                            },
+                            minifyFontValues: {
+                                removeQuotes: false
+                            },
+                            discardUnused: false
+                        })
                     ]
                 },
                 src: '_site/css/main.css'
@@ -208,8 +216,6 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ["_site"],
-
         delete_sync: {
             dist: {
                 cwd: '_src',
@@ -218,16 +224,9 @@ module.exports = function(grunt) {
             }
         },
 
+        clean: ["_site"],
+
         copy: {
-            the_css: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: 'css',
-                    dest: '../_site/css/',
-                    src: ['**/*.css']
-                }]
-            },
             the_html: {
                 files: [{
                     expand: true,
@@ -237,13 +236,22 @@ module.exports = function(grunt) {
                     src: ['**/*.html']
                 }]
             },
+            the_fonts: {
+                files: [{
+                    expand: true,
+                    dot: true,
+                    cwd: '_src/fonts',
+                    dest: '_dev/fonts',
+                    src: ['*.*']
+                }]
+            },
             bower: {
                 files: [{
                     expand: true,
                     dot: true,
                     cwd: 'bower_components',
                     dest: '_dev/js/libs/',
-                    src: ['jquery/jquery.js', 'FitText.js/jquery.fittext.js']
+                    src: ['jquery/jquery.js']
                 }]
             },
             js: {
@@ -271,8 +279,15 @@ module.exports = function(grunt) {
                     return !(grunt.file.exists(dest));
                 },
             },
+            favicons: {
+                // use http://realfavicongenerator.net/ to generate them
+                expand: true,
+                dot: true,
+                cwd: '_src/images/favicons',
+                src: ['*.ico','*.json','*.xml'],
+                dest: '_dev/images/favicons',
+            },
 
-            /* for build **/
             images: {
                 expand: true,
                 dot: true,
