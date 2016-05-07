@@ -70,7 +70,6 @@ h1 {
 .banner {
   background: purple;
   height: 450px;
-  background-image: url("/_dev/images/pizza.jpg");
   background-color: red;
 }
 

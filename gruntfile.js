@@ -21,7 +21,8 @@ module.exports = function(grunt) {
                 base: './',
                 css: '_dev/css/main.css',
                 width: 1200,
-                height: 500
+                height: 500,
+                ignore: ['@font-face',/url\(/]
             },
             src: '_dev/' + name + '.html',
             dest: '_dev/critical-css/' + name + '.css'
@@ -292,7 +293,6 @@ module.exports = function(grunt) {
                 src: ['*.ico','*.json','*.xml'],
                 dest: '_dev/images/favicons',
             },
-
             images: {
                 expand: true,
                 dot: true,
@@ -306,6 +306,13 @@ module.exports = function(grunt) {
                 cwd: '_dev/css',
                 src: 'main.css',
                 dest: '_site/css',
+            },
+            fonts_build: {
+                expand: true,
+                dot: true,
+                cwd: '_dev/fonts',
+                src: '**',
+                dest: '_site/fonts',
             },
         }
     });
@@ -329,6 +336,6 @@ module.exports = function(grunt) {
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['clean', 'delete_sync', 'critical', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
+    grunt.registerTask('build', ['clean', 'delete_sync', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images','copy:fonts_build']);
 
 };
