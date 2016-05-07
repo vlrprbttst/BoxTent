@@ -37,7 +37,7 @@ The only gem used in this project is Compass, type this in the terminal anywhere
 
 Open the terminal in the root of the project and type `npm install --save-dev`. Once finished, type `bower install` for the bower dependencies.
 
-Once done, type `grunt`, open the browser and navigate to `http://localhost:3000/`. What you see is the `index.html` of the `_dev` folder. The website will automatically live reload every time you change and save a `.scss`, `.html` or `.js` file. No need to refresh the browser manually!
+Once done, type `grunt`, open the browser and navigate to `http://localhost:3000/`. What you see is the `index.html` of the `_dev` folder. The website will automatically live reload every time you change and save a `.scss`, `.html` or `.js` file of the `_src` folder. No need to refresh the browser manually!
 
 ## Project Structure
 
@@ -60,6 +60,10 @@ Here are all the automations performed while working in `_src`
 
 Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page, a link to it must be placed in `<head>`
 
+#### FONTS
+
+If you are using custom fonts, create a `fonts` folder in `_src`, and type `grunt copy:the_fonts` to move them in `_dev`.
+
 #### HTML
 
 * at this stage of development, `.html` files are automatically moved in `_dev/` thanks to `processhtml:dev` processing includes. You will find includes in the `_includes` folder. If you don't use includes, the workflow breaks so you must use includes.
@@ -67,6 +71,10 @@ Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder 
 #### IMAGES
 
 * Save images files in `images/`: they will be compressed, optimized and copied in `_dev/images/`.
+
+#### FAVICONS
+
+To generate your favicons I highly recommend using [http://realfavicongenerator.net/](http://realfavicongenerator.net/). Put them in `images/favicons`, the supported file formats will be automatically moved in `_dev` by `imagemin`. To move the rest of the files, type `grunt copy:favicons`
 
 #### JAVASCRIPT
 
@@ -90,7 +98,7 @@ The `_site` folder is wiped out and cleaned completely, ready to be rebuilt.
 
 #### SYNC
 
-The task `delete_sync` checks for extra files between `_dev` and `_src` (html and images for now), if they do not exist in the `_dev` directory, they are removed from `_src` to keep the folders clean of extra files. ** This is a dangerous task ** as this may delete important files, be sure to check the task and modify it if needed.
+The task `delete_sync` checks for extra files between `_dev` and `_src` (html and images only), if they do not exist in the `_dev` directory, they are removed from `_src` to keep the folders clean of extra files. ** This is a dangerous task ** as this may delete important files, be sure to check the task and modify it if needed.
 
 #### CSS
 
