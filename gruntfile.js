@@ -3,7 +3,7 @@ module.exports = function(grunt) {
     var destFolder = "_src/";
     var fileExt = ".html";
 
-    var tempFileList = grunt.file.expand({}, [destFolder + "*" + fileExt] // file glob pattern
+    var tempFileList = grunt.file.expand({}, [destFolder + "*" + fileExt]
     );
 
     var fileList = [];
@@ -17,11 +17,14 @@ module.exports = function(grunt) {
     var min = {};
     fileList.forEach(function(name) {
         min[name] = {
-            outfile: '_dev/critical-css/' + name + '.css',
-            css: '_dev/css/main.css',
-            url: '_dev/' + name + '.html',
-            width: 1200,
-            height: 500
+            options: {
+                base: './',
+                css: '_dev/css/main.css',
+                width: 1200,
+                height: 500
+            },
+            src: '_dev/' + name + '.html',
+            dest: '_dev/critical-css/' + name + '.css'
         };
     });
 
@@ -41,7 +44,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['_src/**/*.html'],
-                tasks: ['newer:processhtml:dev', 'penthouse']
+                tasks: ['newer:processhtml:dev', 'critical']
             },
             images: {
                 files: ['_src/images/**/*.{png,jpg,gif,svg}'],
@@ -58,7 +61,7 @@ module.exports = function(grunt) {
 
             css: {
                 files: ['_src/sass/**/*.scss'],
-                tasks: ['sass', 'postcss:dev', 'penthouse'],
+                tasks: ['sass', 'postcss:dev', 'critical'],
                 options: {
                     spawn: false,
                 }
@@ -78,6 +81,8 @@ module.exports = function(grunt) {
          ====================================================================================================================================================
          *
          */
+
+
 
         htmlmin: {
             dist: {
@@ -193,7 +198,7 @@ module.exports = function(grunt) {
             }
         },
 
-        penthouse: min,
+        critical: min,
 
         processhtml: {
             dev: {
@@ -315,7 +320,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-penthouse');
+    grunt.loadNpmTasks('grunt-critical');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
@@ -324,6 +329,6 @@ module.exports = function(grunt) {
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['clean', 'delete_sync', 'penthouse', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
+    grunt.registerTask('build', ['clean', 'delete_sync', 'critical', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images']);
 
 };
