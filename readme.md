@@ -58,7 +58,15 @@ Here are all the automations performed while working in `_src`
 
 #### CRITICAL CSS
 
-Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder for each html page, a link to it must be placed in `<head>`
+Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder, it is automatically created every time you save an `.html` page. a link to it must be placed in `<head>` in special comments like this:
+
+```
+<!-- build:css inline -->
+<link rel="stylesheet" href="../_dev/critical-css/index.css">
+<!-- /build -->
+```
+
+The special comments will automatically inline the css in the html page.
 
 #### FONTS
 
@@ -80,6 +88,7 @@ To generate your favicons I highly recommend using [http://realfavicongenerator.
 
 * javascript libraries are managed via bower, if you need to add any, please do it via bower
 * if you install a new js library with bower, be sure to include its path in the `copy:bower` and the `concat:dist` tasks of the gruntfile. Once done, type `grunt copy:bower` from the shell to move them in your project. Don't forget to reference them at the bottom of your `.html` files including them inside the `processhtml` special comments like this:
+
 ```
 <!-- build:js js/production.min.js -->
 // here
@@ -103,10 +112,6 @@ The task `delete_sync` checks for extra files between `_dev` and `_src` (html an
 #### CSS
 
 * `main.css` file is minified and optimized with cssnano
-
-#### CRITICAL CSS
-
-Critical (AKA Above the Fold) CSS is automatically inlined in `<head>`
 
 #### HTML
 
