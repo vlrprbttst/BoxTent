@@ -18,11 +18,11 @@ module.exports = function(grunt) {
     fileList.forEach(function(name) {
         min[name] = {
             options: {
-                base: './',
+                base: './_dev',
                 css: '_dev/css/main.css',
                 width: 1200,
                 height: 500,
-                ignore: ['@font-face',/url\(/]
+                //ignore: ['@font-face',/url\(/]
             },
             src: '_dev/' + name + '.html',
             dest: '_dev/critical-css/' + name + '.css'
