@@ -4,7 +4,7 @@
 
 ## What is this?
 
-BoxTent is a frontend infrastructure powered by [Grunt](http://gruntjs.com/ "Grunt") to build small and medium websites from scratch.
+BoxTent is a front-end infrastructure powered by [Grunt](http://gruntjs.com/ "Grunt") to build small and medium websites from scratch.
 It incorporates modern web development best practices implemented automatically through a series of automations, performed at various stages of development.
 
 BoxTent gives you the skeleton to kickstart your next HTML+CSS+JS project, with a common folder structure using grunt automations to perform the following tasks:
@@ -66,7 +66,7 @@ Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder,
 <!-- /build -->
 ```
 
-The special comments will automatically inline the css in the html page.
+The special comments will automatically inline the css in the html page. Paths of properties such as `@font-face` or `background-image:url(...)` are automatically transformed in relative paths. If your project is not hosted on a first level domain you'll get 404 errors because from those resources. To quickly solve this, uncomment the `// ignore: ['@font-face',/url\(/]` in the `gruntfile.js`.
 
 #### FONTS
 
