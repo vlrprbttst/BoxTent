@@ -1,36 +1,41 @@
 module.exports = function(grunt) {
 
     var destFolder = "_src/";
-    var fileExt = ".html";
+     var fileExt = ".html";
 
-    var tempFileList = grunt.file.expand({}, [destFolder + "*" + fileExt]
-    );
+     var tempFileList = grunt.file.expand({}, [destFolder + "*" + fileExt]
+     );
 
-    var fileList = [];
-    tempFileList.forEach(function(url) {
-        var pageUrl = url;
-        pageUrl = pageUrl.replace(destFolder, "");
-        pageUrl = pageUrl.replace(fileExt, "");
-        fileList.push(pageUrl);
-    })
+     var fileList = [];
+     tempFileList.forEach(function(url) {
+         var pageUrl = url;
+         pageUrl = pageUrl.replace(destFolder, "");
+         pageUrl = pageUrl.replace(fileExt, "");
+         fileList.push(pageUrl);
+     })
 
-    var min = {};
-    fileList.forEach(function(name) {
-        min[name] = {
-            options: {
-                base: './_dev',
-                css: '_dev/css/main.css',
-                width: 1200,
-                height: 500,
-                //ignore: ['@font-face',/url\(/]
-            },
-            src: '_dev/' + name + '.html',
-            dest: '_dev/critical-css/' + name + '.css'
-        };
-    });
+     var min = {};
+     fileList.forEach(function(name) {
+         min[name] = {
+             options: {
+                 base: './_dev',
+                 css: '_dev/css/main.css',
+                 width: 1200,
+                 height: 500,
+                 //ignore: ['@font-face',/url\(/]
+             },
+             src: '_dev/' + name + '.html',
+             dest: '_dev/critical-css/' + name + '.css'
+         };
+     });
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+
+        //path variables
+        source: '_src/',
+        dev: '_dev/',
+        site: '_site', //no slash
 
         /* ====================================================================================================================================================
          * ====================================================================================================================================================
@@ -44,16 +49,16 @@ module.exports = function(grunt) {
 
         watch: {
             content: {
-                files: ['_src/**/*.html'],
+                files: ['<%= source %>**/*.html'],
                 tasks: ['newer:processhtml:dev', 'critical']
             },
             images: {
-                files: ['_src/images/**/*.{png,jpg,gif,svg}'],
+                files: ['<%= source %>images/**/*.{png,jpg,gif,svg}'],
                 tasks: ['newer:imagemin', 'copy:unoptimizedImage']
             }, // watch images added to src
 
             scripts: {
-                files: ['_src/js/custom/**/*.js'],
+                files: ['<%= source %>js/custom/**/*.js'],
                 tasks: ['copy:js'],
                 options: {
                     spawn: false,
@@ -61,7 +66,7 @@ module.exports = function(grunt) {
             },
 
             css: {
-                files: ['_src/sass/**/*.scss'],
+                files: ['<%= source %>sass/**/*.scss'],
                 tasks: ['sass', 'postcss:dev', 'critical'],
                 options: {
                     spawn: false,
@@ -95,9 +100,9 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true, // Enable dynamic expansion.
-                    cwd: '_site', // Src matches are relative to this path.
+                    cwd: '<%= site %>', // Src matches are relative to this path.
                     src: ['*.html'], // Actual pattern(s) to match.
-                    dest: '_site', // Destination path prefix.
+                    dest: '<%= site %>', // Destination path prefix.
                     ext: '.html', // Dest filepaths will have this extension.
                     extDot: 'first' // Extensions in filenames begin after the first dot
                 }]
@@ -108,9 +113,9 @@ module.exports = function(grunt) {
             dynamic: {
                 files: [{
                     expand: true, // Enable dynamic expansion
-                    cwd: '_src/images/', // source images (not compressed)
+                    cwd: '<%= source %>images/', // source images (not compressed)
                     src: ['**/*.{png,jpg,gif,svg}'], // Actual patterns to match
-                    dest: '_dev/images/' // Destination of compressed files
+                    dest: '<%= dev %>images/' // Destination of compressed files
                 }]
             }
         }, //end imagemin
@@ -121,10 +126,10 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    '_dev/js/libs/jquery/jquery.js',
-                    '_dev/js/custom/**/*.js'
+                    '<%= dev %>js/libs/jquery/jquery.js',
+                    '<%= dev %>js/custom/**/*.js'
                 ],
-                dest: '_site/js/production.js'
+                dest: '<%= site %>/js/production.js'
             }
         }, //end concat
 
@@ -133,8 +138,8 @@ module.exports = function(grunt) {
                 mangle: false
             },
             dist: {
-                src: '_site/js/production.js',
-                dest: '_site/js/production.min.js'
+                src: '<%= site %>/js/production.js',
+                dest: '<%= site %>/js/production.min.js'
             }
         }, //end uglify
 
@@ -146,7 +151,7 @@ module.exports = function(grunt) {
                     // require: 'plugins?'
                 },
                 files: {
-                    '_dev/css/main.css': '_src/sass/main.scss'
+                    '<%= dev %>css/main.css': '<%= source %>sass/main.scss'
                 }
             }
         }, //end of sass
@@ -162,7 +167,7 @@ module.exports = function(grunt) {
 
                     ]
                 },
-                src: '_dev/css/main.css'
+                src: '<%= dev %>css/main.css'
             },
             build: {
                 options: {
@@ -179,18 +184,18 @@ module.exports = function(grunt) {
                         })
                     ]
                 },
-                src: '_site/css/main.css'
+                src: '<%= site %>/css/main.css'
             }
         }, //postcss
 
         browserSync: {
             dev: {
                 bsFiles: {
-                    src: ['_dev/**', '_src/!.sass-cache']
+                    src: ['<%= dev %>**', '<%= source %>!.sass-cache']
                 },
                 options: {
                     server: {
-                        baseDir: "_dev/"
+                        baseDir: "<%= dev %>"
                     },
                     ghostMode: false,
                     open: false,
@@ -205,18 +210,18 @@ module.exports = function(grunt) {
             dev: {
                 files: [{
                     expand: true,
-                    cwd: '_src/',
+                    cwd: '<%= source %>',
                     src: ['**/*.html', '!_includes/**/*.html'],
-                    dest: '_dev/',
+                    dest: '<%= dev %>',
                     ext: '.html'
                 }, ],
             },
             build: {
                 files: [{
                     expand: true,
-                    cwd: '_dev/',
+                    cwd: '<%= dev %>',
                     src: ['**/*.html'],
-                    dest: '_site/',
+                    dest: '<%= site %>/',
                     ext: '.html'
                 }, ],
             }
@@ -230,7 +235,7 @@ module.exports = function(grunt) {
             }
         },
 
-        clean: ["_site"],
+        clean: ["<%= site %>"],
 
         copy: {
             the_html: {
@@ -238,7 +243,7 @@ module.exports = function(grunt) {
                     expand: true,
                     dot: true,
                     cwd: '_src',
-                    dest: '_dev/',
+                    dest: '<%= dev %>',
                     src: ['**/*.html']
                 }]
             },
@@ -246,8 +251,8 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '_src/fonts',
-                    dest: '_dev/fonts',
+                    cwd: '<%= source %>fonts',
+                    dest: '<%= dev %>fonts',
                     src: ['*.*']
                 }]
             },
@@ -256,7 +261,7 @@ module.exports = function(grunt) {
                     expand: true,
                     dot: true,
                     cwd: 'bower_components',
-                    dest: '_dev/js/libs/',
+                    dest: '<%= dev %>js/libs/',
                     src: ['jquery/jquery.js']
                 }]
             },
@@ -264,16 +269,16 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '_src/js',
-                    dest: '_dev/js',
+                    cwd: '<%= source %>js',
+                    dest: '<%= dev %>js',
                     src: ['**/*.js']
                 }]
             },
             unoptimizedImage: {
                 expand: true,
-                cwd: '_src/images/',
+                cwd: '<%= source %>images/',
                 src: ['**/*.{png,jpg,gif,svg}'],
-                dest: '_dev/images/',
+                dest: '<%= dev %>images/',
 
                 filter: function(filepath) {
 
@@ -289,30 +294,30 @@ module.exports = function(grunt) {
                 // use http://realfavicongenerator.net/ to generate them
                 expand: true,
                 dot: true,
-                cwd: '_src/images/favicons',
+                cwd: '<%= source %>images/favicons',
                 src: ['*.ico','*.json','*.xml'],
-                dest: '_dev/images/favicons',
+                dest: '<%= dev %>images/favicons',
             },
             images: {
                 expand: true,
                 dot: true,
-                cwd: '_dev/images',
+                cwd: '<%= dev %>images',
                 src: '**',
-                dest: '_site/images',
+                dest: '<%= site %>/images',
             },
             css_build: {
                 expand: true,
                 dot: true,
-                cwd: '_dev/css',
+                cwd: '<%= dev %>css',
                 src: 'main.css',
-                dest: '_site/css',
+                dest: '<%= site %>/css',
             },
             fonts_build: {
                 expand: true,
                 dot: true,
-                cwd: '_dev/fonts',
+                cwd: '<%= dev %>fonts',
                 src: '**',
-                dest: '_site/fonts',
+                dest: '<%= site %>/fonts',
             },
         }
     });
