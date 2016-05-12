@@ -4,22 +4,18 @@
 
 ## What is this?
 
-BoxTent is a front-end infrastructure powered by [Grunt](http://gruntjs.com/ "Grunt") to build small and medium websites from scratch.
-It incorporates modern web development best practices implemented automatically through a series of automations, performed at various stages of development.
+BoxTent is a front-end workflow powered by [Grunt](http://gruntjs.com/ "Grunt") that gives you the infrastructure to kickstart your next HTML+CSS+JS project.
+BoxTent prescribes modern web-development best practices including support for:
 
-BoxTent gives you the skeleton to kickstart your next HTML+CSS+JS project, with a common folder structure using grunt automations to perform the following tasks:
-
-* browser autoreloading on changes (css, js and html)
+* browser auto-reloading
 * Browser syncing across devices
 * images optimization
-* scss compilation with Compass support
-* js concatenation
-* html, css and js minification
-* css autoprefixing
-* above the fold css management
+* `.scss` compilation with Compass support
+* `.js` concatenation
+* `.html`, `.css` and `.js` minification
+* `.css` autoprefixing
+* critical above the fold `.css` management
 * includes
-
-This workflow may be a good starting point for more complex projects too, but it has not been tested yet.
 
 ## Requirements
 
