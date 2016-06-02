@@ -229,9 +229,9 @@ module.exports = function(grunt) {
 
         delete_sync: {
             dist: {
-                cwd: '_src',
-                src: ['**', '!**/*.css', '!_includes/**/*.html', '!js/**/*.js', '!sass/**/*.scss'],
-                syncWith: '_dev'
+                cwd: '<%= dev %>',
+                src: ['**/*.html', '!**/*.css', '!_includes/**/*.html', '!js/**/*.js', '!sass/**/*.scss'],
+                syncWith: '<%= source %>'
             }
         },
 
