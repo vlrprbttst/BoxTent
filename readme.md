@@ -111,6 +111,10 @@ The task `delete_sync` checks for extra files between `_dev` and `_src` (html an
 
 * `main.css` file is minified and optimized with cssnano
 
+#### CRITICAL CSS
+
+Critical (AKA Above the Fold) CSS is inlined in `<head>`
+
 #### HTML
 
 * `.html` files are minified
