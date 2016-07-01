@@ -60,7 +60,7 @@ html {
 }
 
 body {
-  background: red;
+  background: grey;
   font-family: arial;
   height: 100%;
   padding: 0;
@@ -71,7 +71,7 @@ h1 {
 }
 
 .container {
-  max-width: 800px;
+  max-width: 600px;
   height: 100%;
   background: #fff;
   margin: 0 auto;

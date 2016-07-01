@@ -9,6 +9,7 @@ html {
     height: 100%;
 }
 
+
 *,
 *:before,
 *:after {
@@ -16,7 +17,7 @@ html {
 }
 
 body {
-    background:red;
+    background:grey;
     font-family: arial;
     height: 100%;
     padding: 0;
@@ -25,7 +26,7 @@ h1 {
     color:red;
 }
 .container {
-    max-width:800px;
+    max-width:600px;
     height: 100%;
     background: #fff;
     @include clearfix;

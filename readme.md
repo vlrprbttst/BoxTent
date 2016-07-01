@@ -56,15 +56,15 @@ Here are all the automations performed while working in `_src`
 
 #### CRITICAL CSS
 
-Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder, it is automatically created every time you save an `.html` page. a link to it must be placed in `<head>` in special comments like this:
+Critical (AKA Above the Fold) CSS is created in the `_dev/critical-css/` folder every time you save an `.html` page and is updated everytime you save the `main.scss` file. A link to it must be placed in `<head>` of each page specific file and included with special comments like this:
 
 ```
-<!-- build:css inline -->
-<link rel="stylesheet" href="../_dev/critical-css/index.css">
+<!-- build:css:build inline -->
+<link rel="stylesheet" href="critical-css/index.css">
 <!-- /build -->
 ```
 
-The special comments will automatically inline the css in the html page. Paths of properties such as `@font-face` or `background-image:url(...)` are automatically transformed in relative paths. If your project is not hosted on a first level domain you'll get 404 errors because from those resources. To quickly solve this, uncomment the `// ignore: ['@font-face',/url\(/]` in the `gruntfile.js`.
+The special comments will automatically inline the css in the html page. Paths of properties such as `@font-face` or `background-image:url(...)` are automatically transformed in relative paths. If your project is not hosted on a first level domain you'll get 404 errors because of wrong paths of these resources. To quickly solve this, uncomment the `// ignore: ['@font-face',/url\(/]` in the `gruntfile.js`.
 
 #### FONTS
 
