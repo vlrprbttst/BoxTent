@@ -50,7 +50,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['<%= source %>/**/*.html'],
-                tasks: ['newer:processhtml:dev', 'critical']
+                tasks: ['processhtml:dev', 'critical']
             },
             images: {
                 files: ['<%= source %>/images/**/*.{png,jpg,gif,svg}'],
@@ -211,7 +211,7 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= source %>/',
-                    src: ['**/*.html', '!_includes/**/*.html'],
+                    src: ['**/*.html'],
                     dest: '<%= dev %>/',
                     ext: '.html'
                 }, ],
