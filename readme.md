@@ -1,3 +1,5 @@
+# BoxTent is still under development, using Boxtent is currently not advised. The final version will be available very soon
+
 # BoxTent
 
 ![boxtent](https://cloud.githubusercontent.com/assets/4832752/15466786/8b05893e-20db-11e6-8120-9e27a922e29d.png)
