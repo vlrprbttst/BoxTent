@@ -230,7 +230,7 @@ module.exports = function(grunt) {
         delete_sync: {
             dist: {
                 cwd: '<%= dev %>',
-                src: ['**/*.html', '!**/*.css', '!_includes/**/*.html', '!js/**/*.js', '!sass/**/*.scss'],
+                src: ['**/*.html','**/*.{png,jpg,gif,svg}', '!**/*.css', '!_includes/**/*.html', '!js/**/*.js', '!sass/**/*.scss'],
                 syncWith: '<%= source %>'
             }
         },
@@ -262,7 +262,7 @@ module.exports = function(grunt) {
                     dot: true,
                     cwd: 'bower_components',
                     dest: '<%= dev %>/js/libs/',
-                    src: ['jquery/jquery.js']
+                    src: ['jquery/dist/jquery.js']
                 }]
             },
             js: {

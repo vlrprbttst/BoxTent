@@ -1,7 +1,7 @@
 {
   "name": "BoxTent",
-  "description": "A front-end infrastructure powered by Grunt",
-  "version": "0.0.1",
+  "description": "A frontend infrastructure powered by Grunt and Bower",
+  "version": "1.0.0",
   "devDependencies": {
     "autoprefixer": "^6.2.3",
     "cssnano": "^3.4.0",

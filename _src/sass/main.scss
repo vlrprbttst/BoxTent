@@ -6,55 +6,10 @@
 
 html {
     box-sizing: border-box;
-    height: 100%;
 }
-
 
 *,
 *:before,
 *:after {
     box-sizing: inherit;
-}
-
-body {
-    background:grey;
-    font-family: arial;
-    height: 100%;
-    padding: 0;
-}
-h1 {
-    color:red;
-}
-.container {
-    max-width:600px;
-    height: 100%;
-    background: #fff;
-    @include clearfix;
-    margin: 0 auto;
-}
-img {
-    width: 80%;
-}
-.left,.right {
-    float: left;
-    height: 100%;
-}
-.left {
-    width: 70%;
-    background:hotpink;
-}
-.right {
-    background: pink;
-    width: 30%;
-}
-
-.banner {
-    background:purple;
-    height:450px;
-    background-image:url("../images/pizza.jpg");
-    background-color:red
-}
-
-.inner-banner {
-    background:orange;
 }

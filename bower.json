@@ -1,12 +1,12 @@
 {
   "name": "BoxTent",
-  "description": "A front-end infrastructure powered by Grunt",
+  "description": "A frontend infrastructure powered by Grunt and Bower",
   "main": "",
   "authors": [
     "Valerio <omegaiori@gmail.com>"
   ],
   "license": "MIT",
-  "homepage": "https://boxtent.top",
+  "homepage": "http://www.boxtent.top",
   "moduleType": [
     "node"
   ],

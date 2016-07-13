@@ -9,7 +9,7 @@
 @mixin clearfix {
   &:after {
     content: "";
-    display: table; 
+    display: table;
     clear: both;
   }
 }
@@ -22,8 +22,8 @@
   transform: translateY(-50%);
 }
 
-//mediaquery shorthand: @include respond-to(480) {}
+//mediaquery shorthand: @include respond-to(30) {}
 
 @mixin respond-to($breakpoint) {
-    @media all and (max-width: $breakpoint + px) { @content; }
+    @media all and (max-width: $breakpoint + em) { @content; }
 }
