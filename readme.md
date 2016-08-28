@@ -19,7 +19,7 @@ BoxTent is a frontend workflow that gives you the infrastructure to build your n
 
 BoxTent is perfect for crafting small and simple `.html`, `.css` and `.js` performant website and can be easily extended to suit more complex needs, leaving you the time to focus on what really matters: **your code**.
 
-BoxTent is presented as a blank canvas, not a framework. It promotes a defined workflow and comes with a very basic HTML5 template, a folder structure and some starting files to work with. All you need to do is download or fork the repository from github and install the necessary dependencies to start coding right away. You are the one is control of the technology, the plugins and the frameworks you want to use for your project.
+BoxTent is presented as a blank canvas, not a framework. It promotes a defined workflow and comes with a very basic HTML5 template, a folder structure and some starting files to work with. All you need to do is download or fork the repository from github and install the necessary dependencies to start coding right away. You are the one in control of the technology, the plugins and the frameworks you want to use for your project.
 
 ## Documentation
 
