@@ -10,7 +10,6 @@ BoxTent is a frontend workflow that gives you the infrastructure to build your n
 
 * Sass (`.scss`) compilation with Compass support
 * Images optimization and compression
-* images optimization
 * `.js` concatenation
 * `.html`, `.css` and `.js` minification
 * `.css` automatic autoprefixing
