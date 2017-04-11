@@ -36,6 +36,12 @@ module.exports = function(grunt) {
         source: '_src',
         dev: '_dev',
         site: '_site',
+        scss: 'sass',
+        css: 'css',
+        js: 'js',
+        images: 'images',
+        fonts: 'fonts',
+        favicons: 'favicons',
 
         /* ====================================================================================================================================================
          * ====================================================================================================================================================
@@ -53,12 +59,12 @@ module.exports = function(grunt) {
                 tasks: ['newer:processhtml:dev', 'critical']
             },
             images: {
-                files: ['<%= source %>/images/**/*.{png,jpg,gif,svg}'],
+                files: ['<%= source %>/<%= images %>/**/*.{png,jpg,gif,svg}'],
                 tasks: ['newer:imagemin', 'copy:unoptimizedImage']
             }, // watch images added to src
 
             scripts: {
-                files: ['<%= source %>/js/custom/**/*.js'],
+                files: ['<%= source %>/<%= js %>/custom/**/*.js'],
                 tasks: ['copy:js'],
                 options: {
                     spawn: false,
@@ -66,7 +72,7 @@ module.exports = function(grunt) {
             },
 
             scss: {
-                files: ['<%= source %>/sass/**/*.scss'],
+                files: ['<%= source %>/<%= scss %>/**/*.scss'],
                 tasks: ['newer:sass:dist', 'postcss:dev', 'critical'],
                 options: {
                     spawn: false,
@@ -74,7 +80,7 @@ module.exports = function(grunt) {
             }, //end of sass watch
 
             partial_scss: {
-                files: ['<%= source %>/sass/**/_*.scss'],
+                files: ['<%= source %>/<%= scss %>/**/_*.scss'],
                 tasks: ['sass:partials', 'postcss:dev'],
                 options: {
                     spawn: true,
@@ -121,9 +127,9 @@ module.exports = function(grunt) {
             dynamic: {
                 files: [{
                     expand: true, // Enable dynamic expansion
-                    cwd: '<%= source %>/images/', // source images (not compressed)
+                    cwd: '<%= source %>/<%= images %>/', // source images (not compressed)
                     src: ['**/*.{png,jpg,gif,svg}'], // Actual patterns to match
-                    dest: '<%= dev %>/images/' // Destination of compressed files
+                    dest: '<%= dev %>/<%= images %>/' // Destination of compressed files
                 }]
             }
         }, //end imagemin
@@ -134,10 +140,10 @@ module.exports = function(grunt) {
             },
             dist: {
                 src: [
-                    '<%= dev %>/js/libs/jquery/dist/jquery.js',
-                    '<%= dev %>/js/custom/**/*.js'
+                    '<%= dev %>/<%= js %>/libs/jquery/dist/jquery.js',
+                    '<%= dev %>/<%= js %>/custom/**/*.js'
                 ],
-                dest: '<%= site %>/js/production.js'
+                dest: '<%= site %>/<%= js %>/production.js'
             }
         }, //end concat
 
@@ -146,8 +152,8 @@ module.exports = function(grunt) {
                 mangle: false
             },
             dist: {
-                src: '<%= site %>/js/production.js',
-                dest: '<%= site %>/js/production.min.js'
+                src: '<%= site %>/<%= js %>/production.js',
+                dest: '<%= site %>/<%= js %>/production.min.js'
             }
         }, //end uglify
 
@@ -157,7 +163,7 @@ module.exports = function(grunt) {
                     // require: 'plugins?'
                 },
                 files: {
-                    '<%= dev %>/css/main.css': '<%= source %>/sass/main.scss'
+                    '<%= dev %>/<%= css %>/main.css': '<%= source %>/<%= scss %>/main.scss'
                 }
             }, //dist
 
@@ -166,7 +172,7 @@ module.exports = function(grunt) {
                     // require: 'plugins?'
                 },
                 files: {
-                    '<%= dev %>/css/main.css': '<%= source %>/sass/main.scss'
+                    '<%= dev %>/<%= css %>/main.css': '<%= source %>/<%= scss %>/main.scss'
                 }
             }
         }, //end of sass
@@ -182,7 +188,7 @@ module.exports = function(grunt) {
 
                     ]
                 },
-                src: '<%= dev %>/css/main.css'
+                src: '<%= dev %>/<%= css %>/main.css'
             },
             build: {
                 options: {
@@ -199,7 +205,7 @@ module.exports = function(grunt) {
                         })
                     ]
                 },
-                src: '<%= site %>/css/main.css'
+                src: '<%= site %>/<%= css %>/main.css'
             }
         }, //postcss
 
@@ -245,7 +251,7 @@ module.exports = function(grunt) {
         delete_sync: {
             dist: {
                 cwd: '<%= dev %>',
-                src: ['**/*.html', '**/*.{png,jpg,gif,svg}', '!**/*.css', '!_includes/**/*.html', '!js/**/*.js', '!sass/**/*.scss'],
+                src: ['**/*.html', '**/*.{png,jpg,gif,svg}', '!**/*.css', '!_includes/**/*.html', '!<%= js %>/**/*.js', '!<%= scss %>/**/*.scss'],
                 syncWith: '<%= source %>'
             }
         },
@@ -266,8 +272,8 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= source %>/fonts',
-                    dest: '<%= dev %>/fonts',
+                    cwd: '<%= source %>/<%= images %>',
+                    dest: '<%= dev %>/<%= images %>',
                     src: ['*.*']
                 }]
             },
@@ -276,7 +282,7 @@ module.exports = function(grunt) {
                     expand: true,
                     dot: true,
                     cwd: 'bower_components',
-                    dest: '<%= dev %>/js/libs/',
+                    dest: '<%= dev %>/<%= js %>/libs/',
                     src: ['jquery/dist/jquery.js']
                 }]
             },
@@ -284,16 +290,16 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= source %>/js',
-                    dest: '<%= dev %>/js',
+                    cwd: '<%= source %>/<%= js %>',
+                    dest: '<%= dev %>/<%= js %>',
                     src: ['**/*.js']
                 }]
             },
             unoptimizedImage: {
                 expand: true,
-                cwd: '<%= source %>/images/',
+                cwd: '<%= source %>/<%= images %>/',
                 src: ['**/*.{png,jpg,gif,svg}'],
-                dest: '<%= dev %>/images/',
+                dest: '<%= dev %>/<%= images %>/',
 
                 filter: function(filepath) {
 
@@ -309,30 +315,30 @@ module.exports = function(grunt) {
                 // use http://realfavicongenerator.net/ to generate them
                 expand: true,
                 dot: true,
-                cwd: '<%= source %>/images/favicons',
+                cwd: '<%= source %>/<%= images %>/<%= favicons %>',
                 src: ['*.ico','*.json','*.xml'],
-                dest: '<%= dev %>/images/favicons',
+                dest: '<%= dev %>/<%= images %>/<%= favicons %>',
             },
             images: {
                 expand: true,
                 dot: true,
-                cwd: '<%= dev %>/images',
+                cwd: '<%= dev %>/<%= images %>',
                 src: '**',
-                dest: '<%= site %>/images',
+                dest: '<%= site %>/<%= images %>',
             },
             css_build: {
                 expand: true,
                 dot: true,
-                cwd: '<%= dev %>/css',
+                cwd: '<%= dev %>/<%= css %>',
                 src: 'main.css',
-                dest: '<%= site %>/css',
+                dest: '<%= site %>/<%= css %>',
             },
             fonts_build: {
                 expand: true,
                 dot: true,
-                cwd: '<%= dev %>/fonts',
+                cwd: '<%= dev %>/<%= images %>',
                 src: '**',
-                dest: '<%= site %>/fonts',
+                dest: '<%= site %>/<%= images %>',
             },
         }
     });
