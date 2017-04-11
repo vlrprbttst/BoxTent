@@ -67,11 +67,19 @@ module.exports = function(grunt) {
 
             css: {
                 files: ['<%= source %>/sass/**/*.scss'],
-                tasks: ['sass', 'postcss:dev', 'critical'],
+                tasks: ['newer:sass:dist', 'postcss:dev', 'critical'],
                 options: {
                     spawn: false,
                 }
             }, //end of sass watch
+
+            partial_scss: {
+                files: ['<%= source %>/sass/**/_*.scss'],
+                tasks: ['sass:partials', 'postcss:dev'],
+                options: {
+                    spawn: true,
+                }
+            }, //end of sass partials watch
 
             grunt: {
                 files: ['gruntfile.js']
@@ -145,6 +153,17 @@ module.exports = function(grunt) {
 
         sass: {
             dist: {
+                options: {
+                    style: 'nested', //no need for config.rb
+                    compass: 'true',
+                    // require: 'plugins?'
+                },
+                files: {
+                    '<%= dev %>/css/main.css': '<%= source %>/sass/main.scss'
+                }
+            }, //dist
+
+            partials: {
                 options: {
                     style: 'nested', //no need for config.rb
                     compass: 'true',
