@@ -36,7 +36,7 @@ module.exports = function(grunt) {
         source: '_src',
         dev: '_dev',
         site: '_site',
-        scss: 'sass',
+        scss: 'scss',
         css: 'css',
         js: 'js',
         images: 'images',
