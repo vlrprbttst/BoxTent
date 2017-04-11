@@ -24,3 +24,17 @@ BoxTent is presented as a blank canvas, not a framework. It promotes a defined w
 ## Documentation
 
 Read the full documentation at http://www.boxtent.top
+
+# Release Notes
+* XX XX, 2017: Boxtent is updated with the following upgrades:
+  - watch task for partial scss
+  - compass removed from BoxTent
+  - renamed css watch task into scss watch task
+  - removed unnecessary comments from sass task (options)
+  - new path variables for all assets
+  - renamed the sass folder into 'scss'
+  - added safe options for cssnano
+  - removed the critical css task altogheter
+  
+* Nov 27, 2015: BoxTent is released.
+Refer to this for a stable version: https://github.com/vlrprbttst/BoxTent/tree/802b84457aeb9d9df1ee518729e1d21d8d8239e8
