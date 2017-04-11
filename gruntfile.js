@@ -65,7 +65,7 @@ module.exports = function(grunt) {
                 }
             },
 
-            css: {
+            scss: {
                 files: ['<%= source %>/sass/**/*.scss'],
                 tasks: ['newer:sass:dist', 'postcss:dev', 'critical'],
                 options: {
