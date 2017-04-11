@@ -154,8 +154,6 @@ module.exports = function(grunt) {
         sass: {
             dist: {
                 options: {
-                    //style: 'nested',
-                    //compass: 'true',
                     // require: 'plugins?'
                 },
                 files: {
@@ -165,8 +163,6 @@ module.exports = function(grunt) {
 
             partials: {
                 options: {
-                    //style: 'nested',
-                    //compass: 'true',
                     // require: 'plugins?'
                 },
                 files: {
