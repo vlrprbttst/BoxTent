@@ -195,13 +195,17 @@ module.exports = function(grunt) {
                     map: false,
                     processors: [
                         require('cssnano')({
-                            autoprefixer: {
-                                browsers: 'last 2 version, IE 9'
-                            },
                             minifyFontValues: {
                                 removeQuotes: false
                             },
-                            discardUnused: false
+                            discardUnused: false,
+                            discardComments: true,
+                            mergeIdents: false,
+                            mergeRules: false,
+                            reducePositions: false,
+                            discardOverridden: false,
+                            normalizeUnicode:false,
+                            zindex: false
                         })
                     ]
                 },
