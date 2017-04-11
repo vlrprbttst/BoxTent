@@ -1,34 +1,4 @@
 module.exports = function(grunt) {
-
-    var destFolder = "_src/";
-     var fileExt = ".html";
-
-     var tempFileList = grunt.file.expand({}, [destFolder + "*" + fileExt]
-     );
-
-     var fileList = [];
-     tempFileList.forEach(function(url) {
-         var pageUrl = url;
-         pageUrl = pageUrl.replace(destFolder, "");
-         pageUrl = pageUrl.replace(fileExt, "");
-         fileList.push(pageUrl);
-     })
-
-     var min = {};
-     fileList.forEach(function(name) {
-         min[name] = {
-             options: {
-                 base: './_dev',
-                 css: '_dev/css/main.css',
-                 width: 1200,
-                 height: 500,
-                 //ignore: ['@font-face',/url\(/]
-             },
-             src: '_dev/' + name + '.html',
-             dest: '_dev/critical-css/' + name + '.css'
-         };
-     });
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -56,7 +26,7 @@ module.exports = function(grunt) {
         watch: {
             content: {
                 files: ['<%= source %>/**/*.html'],
-                tasks: ['newer:processhtml:dev', 'critical']
+                tasks: ['newer:processhtml:dev']
             },
             images: {
                 files: ['<%= source %>/<%= images %>/**/*.{png,jpg,gif,svg}'],
@@ -73,7 +43,7 @@ module.exports = function(grunt) {
 
             scss: {
                 files: ['<%= source %>/<%= scss %>/**/*.scss'],
-                tasks: ['newer:sass:dist', 'postcss:dev', 'critical'],
+                tasks: ['newer:sass:dist', 'postcss:dev'],
                 options: {
                     spawn: false,
                 }
@@ -229,8 +199,6 @@ module.exports = function(grunt) {
             }
         },
 
-        critical: min,
-
         processhtml: {
             dev: {
                 files: [{
@@ -357,7 +325,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-postcss');
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
-    grunt.loadNpmTasks('grunt-critical');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
