@@ -3,7 +3,7 @@
   "description": "A frontend infrastructure powered by Grunt and Bower",
   "version": "1.0.0",
   "devDependencies": {
-    "autoprefixer": "^6.2.3",
+    "autoprefixer": "^7.1.1",
     "cssnano": "^3.4.0",
     "grunt": "^0.4.5",
     "grunt-browser-sync": "^1.5.3",
