@@ -244,8 +244,8 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     dot: true,
-                    cwd: '<%= source %>/<%= images %>',
-                    dest: '<%= dev %>/<%= images %>',
+                    cwd: '<%= source %>/<%= fonts %>',
+                    dest: '<%= dev %>/<%= fonts %>',
                     src: ['*.*']
                 }]
             },
@@ -308,9 +308,9 @@ module.exports = function(grunt) {
             fonts_build: {
                 expand: true,
                 dot: true,
-                cwd: '<%= dev %>/<%= images %>',
+                cwd: '<%= dev %>/<%= fonts %>',
                 src: '**',
-                dest: '<%= site %>/<%= images %>',
+                dest: '<%= site %>/<%= fonts %>',
             },
         }
     });
