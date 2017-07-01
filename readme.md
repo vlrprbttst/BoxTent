@@ -37,6 +37,6 @@ Read the full documentation at http://www.boxtent.top
   - removed the `critical` css task altogether
 
 
-  Refer to this for a stable version: https://github.com/vlrprbttst/BoxTent/tree/fd51c3c42bff34e84aaa508dbf47853f6f498bcb
+  Refer to this for a stable version: https://github.com/vlrprbttst/BoxTent/tree/2f90a05ea898c43d80b7e92223c603f3daffb1fa
 
 * Nov 27, 2015: BoxTent v1.0 is released. Refer to this for a stable version: https://github.com/vlrprbttst/BoxTent/tree/802b84457aeb9d9df1ee518729e1d21d8d8239e8
