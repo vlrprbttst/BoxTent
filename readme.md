@@ -1,8 +1,8 @@
 # BoxTent
 
-http://www.boxtent.top
+http://valeriopierbattista.com/projects/boxtent/
 
-![boxtent](http://boxtent.top/images/boxtent-illustration.svg)
+![boxtent](http://valeriopierbattista.com/projects/boxtent/images/boxtent-illustration.svg)
 <br><br>
 > The plastic table-like item found in pizza boxes is called a box tent and was patented in 1983.
 
@@ -22,7 +22,7 @@ BoxTent is presented as a blank canvas, not a framework. It promotes a defined w
 
 ## Documentation
 
-Read the full documentation at http://www.boxtent.top
+Read the full documentation at http://valeriopierbattista.com/projects/boxtent/
 
 ## Release Notes
 * Apr 12, 2017: Boxtent v1.1 has been updated with the following upgrades:
