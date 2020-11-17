@@ -33,7 +33,7 @@ module.exports = function(grunt) {
             }, // watch images added to src
 
             scripts: {
-                files: ['<%= source %>/<%= js %>/custom/**/*.js'],
+                files: ['<%= source %>/<%= js %>/**/*.js'],
                 tasks: ['copy:js'],
                 options: {
                     spawn: false,
@@ -84,29 +84,29 @@ module.exports = function(grunt) {
                 }]
             }
         }, //end imagemin
+        
+        // concat: {
+        //     options: {
+        //         separator: ';',
+        //     },
+        //     dist: {
+        //         src: [
+        //             '<%= dev %>/<%= js %>/libs/jquery/dist/jquery.js',
+        //             '<%= dev %>/<%= js %>/custom/**/*.js'
+        //         ],
+        //         dest: '<%= site %>/<%= js %>/production.js'
+        //     }
+        // }, //end concat
 
-        concat: {
-            options: {
-                separator: ';',
-            },
-            dist: {
-                src: [
-                    '<%= dev %>/<%= js %>/libs/jquery/dist/jquery.js',
-                    '<%= dev %>/<%= js %>/custom/**/*.js'
-                ],
-                dest: '<%= site %>/<%= js %>/production.js'
-            }
-        }, //end concat
-
-        uglify: {
-            options: {
-                mangle: false
-            },
-            dist: {
-                src: '<%= site %>/<%= js %>/production.js',
-                dest: '<%= site %>/<%= js %>/production.min.js'
-            }
-        }, //end uglify
+        // uglify: {
+        //     options: {
+        //         mangle: false
+        //     },
+        //     dist: {
+        //         src: '<%= site %>/<%= js %>/production.js',
+        //         dest: '<%= site %>/<%= js %>/production.min.js'
+        //     }
+        // }, //end uglify
 
         sass: {
             dist: {
