@@ -5,7 +5,6 @@ module.exports = function(grunt) {
         //path variables
         source: '_src',
         dev: '_dev',
-        site: '_site',
         scss: 'scss',
         css: 'css',
         js: 'js',
@@ -74,25 +73,7 @@ module.exports = function(grunt) {
 
 
 
-        htmlmin: {
-            dist: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true,
-                    minifyJS: true,
-                    minifyCSS: true
-                },
-                files: [{
-                    expand: true, // Enable dynamic expansion.
-                    cwd: '<%= site %>', // Src matches are relative to this path.
-                    src: ['*.html'], // Actual pattern(s) to match.
-                    dest: '<%= site %>', // Destination path prefix.
-                    ext: '.html', // Dest filepaths will have this extension.
-                    extDot: 'first' // Extensions in filenames begin after the first dot
-                }]
-            }
-        },
-
+        
         imagemin: {
             dynamic: {
                 files: [{
@@ -159,27 +140,6 @@ module.exports = function(grunt) {
                     ]
                 },
                 src: '<%= dev %>/<%= css %>/main.css'
-            },
-            build: {
-                options: {
-                    map: false,
-                    processors: [
-                        require('cssnano')({
-                            minifyFontValues: {
-                                removeQuotes: false
-                            },
-                            discardUnused: false,
-                            discardComments: true,
-                            mergeIdents: false,
-                            mergeRules: false,
-                            reducePositions: false,
-                            discardOverridden: false,
-                            normalizeUnicode:false,
-                            zindex: false
-                        })
-                    ]
-                },
-                src: '<%= site %>/<%= css %>/main.css'
             }
         }, //postcss
 
@@ -207,29 +167,9 @@ module.exports = function(grunt) {
                     src: ['**/*.html', '!_includes/**/*.html'],
                     dest: '<%= dev %>/',
                     ext: '.html'
-                }, ],
-            },
-            build: {
-                files: [{
-                    expand: true,
-                    cwd: '<%= dev %>/',
-                    src: ['**/*.html'],
-                    dest: '<%= site %>/',
-                    ext: '.html'
-                }, ],
+                }]
             }
         },
-
-        delete_sync: {
-            dist: {
-                cwd: '<%= dev %>',
-                src: ['**/*.html', '**/*.{png,jpg,gif,svg}', '!**/*.css', '!_includes/**/*.html', '!<%= js %>/**/*.js', '!<%= scss %>/**/*.scss'],
-                syncWith: '<%= source %>'
-            }
-        },
-
-        clean: ["<%= site %>"],
-
         copy: {
             the_html: {
                 files: [{
@@ -247,15 +187,6 @@ module.exports = function(grunt) {
                     cwd: '<%= source %>/<%= fonts %>',
                     dest: '<%= dev %>/<%= fonts %>',
                     src: ['*.*']
-                }]
-            },
-            bower: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: 'bower_components',
-                    dest: '<%= dev %>/<%= js %>/libs/',
-                    src: ['jquery/dist/jquery.js']
                 }]
             },
             js: {
@@ -290,34 +221,12 @@ module.exports = function(grunt) {
                 cwd: '<%= source %>/<%= images %>/<%= favicons %>',
                 src: ['*.ico','*.json','*.xml'],
                 dest: '<%= dev %>/<%= images %>/<%= favicons %>',
-            },
-            images: {
-                expand: true,
-                dot: true,
-                cwd: '<%= dev %>/<%= images %>',
-                src: '**',
-                dest: '<%= site %>/<%= images %>',
-            },
-            css_build: {
-                expand: true,
-                dot: true,
-                cwd: '<%= dev %>/<%= css %>',
-                src: 'main.css',
-                dest: '<%= site %>/<%= css %>',
-            },
-            fonts_build: {
-                expand: true,
-                dot: true,
-                cwd: '<%= dev %>/<%= fonts %>',
-                src: '**',
-                dest: '<%= site %>/<%= fonts %>',
-            },
+            }
         }
     });
 
 
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-htmlmin');
     grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -326,13 +235,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-processhtml');
-    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-delete-sync');
+
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
     // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['clean', 'delete_sync', 'processhtml:build', 'htmlmin', 'concat', 'uglify', 'copy:css_build', 'postcss:build', 'copy:images','copy:fonts_build']);
+    grunt.registerTask('build', ['concat', 'uglify']);
 
 };
