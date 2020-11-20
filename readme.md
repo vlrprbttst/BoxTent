@@ -1,42 +1,39 @@
-# BoxTent
+# BoxTent Light
+## A cosa serve
+BoxTent light consente di avere una base di partenza per creare siti statici semplici in HTML/CSS/JS, includendo automazioni per facilitare lo sviluppo e velocizzarlo. Include:
 
-http://valeriopierbattista.com/projects/boxtent/
-
-![boxtent](http://valeriopierbattista.com/projects/boxtent/images/boxtent-illustration.svg)
-<br><br>
-> The plastic table-like item found in pizza boxes is called a box tent and was patented in 1983.
-
-BoxTent is a frontend workflow that gives you the infrastructure to build your next website prescribing web development best practices to deliver a state of the art product to your users. With the help of Grunt and Bower, BoxTent automates your workflow and takes care of assets optimization, concatenation, minification and much more. BoxTent includes out of the box support for:
-
-* Sass (`.scss`) compilation
-* Images optimization and compression
-* `.js` concatenation
-* `.html`, `.css` and `.js` minification
-* `.css` automatic autoprefixing
-* Browser auto-reloading and live syncing across devices
+* Compilazione Sass (`.scss`) 
+* Ottimizzazione e compressione immagini
+* Gestione Favicons
+* Autoprefixing del CSS
+* Gestione Fonts
 * HTML includes
 
-BoxTent is perfect for crafting small and simple `.html`, `.css` and `.js` performant website and can be easily extended to suit more complex needs, leaving you the time to focus on what really matters: **your code**.
+## Come si usa
+### Installazione
+- Scarica il respository da bitbucket
+- Spostane il contenuto tranne i file relativi a git nella cartella del tuo progetto
+- Da terminale: `npm install`
+- Da terminale: `grunt`
+- Vai su `http://localhost:3000` e puoi iniziare a lavorare.
 
-BoxTent is presented as a blank canvas, not a framework. It promotes a defined workflow and comes with a very basic HTML5 template, a folder structure and some starting files to work with. All you need to do is download or fork the repository from github and install the necessary dependencies to start coding right away. You are the one in control of the technology, the plugins and the frameworks you want to use for your project.
+### Struttura cartelle
 
-## Documentation
+Lavorare esclusivamente nella cartella `_src`, ciò che vedi sul browser corrisponde al compilato che si trova nella cartella `_dev` (che non dovrai mai modificare).
 
-Read the full documentation at http://valeriopierbattista.com/projects/boxtent/
+Nella cartella `_src`:
 
-## Release Notes
-* Apr 12, 2017: Boxtent v1.1 has been updated with the following upgrades:
+- `_includes` dovrà contenere gli includes. Ne va usato almeno uno in ogni pagina del sito.
+- `fonts` dovrà contenere i font (se ce ne sono). se non ce ne sono o si usa un google font, si può cancellare
+- `images` deve contenere le immagini, può contenere sottocartelle e la cartella `favicons` (si deve chiamare così) con le favicons prodotte dal sito http://realfavicongenerator.net/
+- `js` contiene i JS, può contenere sottocartelle chiamate come preferisci
+- `scss` contiene gli scss.
 
-  - watch task for partial scss now triggers a `main.scss` file compilation
-  - Compass is now removed from BoxTent
-  - renamed the css watch task into scss watch task
-  - removed unnecessary comments from sass task (options)
-  - new path variables for all assets
-  - renamed the sass folder into `scss` instead of `sass`
-  - added safer options for the `cssnano` minification task
-  - removed the `critical` css task altogether
+Con grunt avviato, il watch si occuperà automaticamente di:
+
+- compilare il css
+- ottimizzare le immagini e copiare le favicons
+- copiare l'html elaborandone gli includes
+- copiare i js
 
 
-  Refer to this for a stable version: https://github.com/vlrprbttst/BoxTent/tree/2f90a05ea898c43d80b7e92223c603f3daffb1fa
-
-* Nov 27, 2015: BoxTent v1.0 is released. Refer to this for a stable version: https://github.com/vlrprbttst/BoxTent/tree/802b84457aeb9d9df1ee518729e1d21d8d8239e8

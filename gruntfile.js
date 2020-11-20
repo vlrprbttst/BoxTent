@@ -32,8 +32,8 @@ module.exports = function(grunt) {
                 tasks: ['processhtml:dev']
             },
             images: {
-                files: ['<%= source %>/<%= images %>/**/*.{png,jpg,gif,svg}'],
-                tasks: ['newer:imagemin', 'copy:unoptimizedImage']
+                files: ['<%= source %>/<%= images %>/**/*.{png,jpg,gif,svg}','!<%= source %>/<%= images %>/<%= favicons %>/**/*'],
+                tasks: ['newer:imagemin', 'copy:unoptimizedImage','copy:favicons']
             }, // watch images added to src
             scripts: {
                 files: ['<%= source %>/<%= js %>/**/*.js'],
@@ -213,7 +213,7 @@ module.exports = function(grunt) {
                 expand: true,
                 dot: true,
                 cwd: '<%= source %>/<%= images %>/<%= favicons %>',
-                src: ['*.ico','*.json','*.xml'],
+                src: ['*.ico','*.json','*.xml','*.webmanifest'],
                 dest: '<%= dev %>/<%= images %>/<%= favicons %>',
             }
         }
