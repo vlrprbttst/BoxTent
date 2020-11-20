@@ -71,7 +71,7 @@ module.exports = function(grunt) {
          *
          */
 
-
+        clean: ["<%= dev %>"],
 
         
         imagemin: {
@@ -236,11 +236,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-newer');
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
-    // rebuild the _site folder: type grunt build
-    grunt.registerTask('build', ['concat', 'uglify']);
+    // rebuild the _dev folder: type grunt build
+    grunt.registerTask('build', ['clean']);
 
 };
