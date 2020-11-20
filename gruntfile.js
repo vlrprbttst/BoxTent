@@ -27,11 +27,14 @@ module.exports = function(grunt) {
                 files: ['<%= source %>/**/*.html'],
                 tasks: ['newer:processhtml:dev']
             },
+            includes: {
+                files: ['<%= source %>/_includes/**/*.html'],
+                tasks: ['processhtml:dev']
+            },
             images: {
                 files: ['<%= source %>/<%= images %>/**/*.{png,jpg,gif,svg}'],
                 tasks: ['newer:imagemin', 'copy:unoptimizedImage']
             }, // watch images added to src
-
             scripts: {
                 files: ['<%= source %>/<%= js %>/**/*.js'],
                 tasks: ['copy:js'],
