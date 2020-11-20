@@ -80,9 +80,10 @@ module.exports = function(grunt) {
          *
          */
 
+        // TASK CLEAN: elimina la cartella _dev
         clean: ["<%= dev %>"],
 
-        
+        // TASK IMAGEMIN: comprime e ottimizza le immagini
         imagemin: {
             dynamic: {
                 files: [{
@@ -93,30 +94,8 @@ module.exports = function(grunt) {
                 }]
             }
         }, //end imagemin
-        
-        // concat: {
-        //     options: {
-        //         separator: ';',
-        //     },
-        //     dist: {
-        //         src: [
-        //             '<%= dev %>/<%= js %>/libs/jquery/dist/jquery.js',
-        //             '<%= dev %>/<%= js %>/custom/**/*.js'
-        //         ],
-        //         dest: '<%= site %>/<%= js %>/production.js'
-        //     }
-        // }, //end concat
 
-        // uglify: {
-        //     options: {
-        //         mangle: false
-        //     },
-        //     dist: {
-        //         src: '<%= site %>/<%= js %>/production.js',
-        //         dest: '<%= site %>/<%= js %>/production.min.js'
-        //     }
-        // }, //end uglify
-
+        // TASK SASS: compila gli scss
         sass: {
             dist: {
                 options: {
@@ -137,6 +116,7 @@ module.exports = function(grunt) {
             }
         }, //end of sass
 
+        // TASK POSTCSS: autoprefixer
         postcss: {
             dev: {
                 options: {
@@ -152,6 +132,7 @@ module.exports = function(grunt) {
             }
         }, //postcss
 
+        // TASK POSTCSS: browserSync
         browserSync: {
             dev: {
                 bsFiles: {
@@ -167,7 +148,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-
+        // TASK Process HTML: elabora gli includes
         processhtml: {
             dev: {
                 files: [{
@@ -179,6 +160,8 @@ module.exports = function(grunt) {
                 }]
             }
         },
+
+        // TASK COPY: copia cose da una cartella all'altra, ha dei sotto task per le varie cartelle
         copy: {
             the_fonts: {
                 files: [{
@@ -241,6 +224,7 @@ module.exports = function(grunt) {
 
     // default for development: type grunt
     grunt.registerTask('default', ['browserSync', 'watch']);
+    
     // rebuild the _dev folder: type grunt build
     grunt.registerTask('build', ['clean','processhtml:dev','imagemin','copy:unoptimizedImage','copy:js','sass:dist','postcss:dev','copy:the_fonts','copy:favicons']);
 

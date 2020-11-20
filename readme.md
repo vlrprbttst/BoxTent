@@ -44,6 +44,12 @@ Con grunt avviato, il watch si occuperà automaticamente di tutto:
 
 Può succedere che un'automazione per qualche motivo non parta, oppure si cancellano file in `_src` e quindi il contenuto di `_dev` risulta disallineato. In ogni caso con il comando `grunt build` la cartella `_dev` viene svuotata e ricreata da capo. Si può usare questo comando in modo safe e in qualsiasi momento.
 
+## Personalizzazione
+
+Il gruntfile è personalizzabile. C'è la possibilità di cambiare i path principali delle risorse e ottimizzare le options dei task. Per approfondire cercare su google ogni task, andare alla loro pagina github e lì sarà possibile trovare la documentazione di ogni singolo task.
+
+
+
 
 
 
