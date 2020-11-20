@@ -48,6 +48,18 @@ Può succedere che un'automazione per qualche motivo non parta, oppure si cancel
 
 Il gruntfile è personalizzabile. C'è la possibilità di cambiare i path principali delle risorse e ottimizzare le options dei task. Per approfondire cercare su google ogni task, andare alla loro pagina github e lì sarà possibile trovare la documentazione di ogni singolo task.
 
+## Problemi frequenti
+
+### Il task non scatta e/o alcune cose non vengono copiate su _dev
+
+Può succedere quando si inseriscono nuovi file in una cartella vuota mai usata prima. Succederà solo finché quella cartella non sarà riempita per almeno la prima volta, dopodiché funzionerà tutto come previsto.
+
+**soluzione**: Se succede, stoppare grunt, fare `grunt build` e tornare a lavorare con `grunt`
+
+### _src e _dev sono disallineate
+
+**soluzione**: Se succede, stoppare grunt, fare `grunt build` e tornare a lavorare con `grunt`
+
 
 
 
