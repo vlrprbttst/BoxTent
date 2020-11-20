@@ -17,6 +17,11 @@ BoxTent light consente di avere una base di partenza per creare siti statici sem
 - Da terminale: `grunt`
 - Vai su `http://localhost:3000` e puoi iniziare a lavorare.
 
+### Comandi
+
+- `grunt`: per avviare il progetto e il watch. Mentre lavori grunt deve sempre girare
+- `grunt build`: può succedere che un'automazione per qualche motivo non parta, oppure si cancellano file in `_src` e quindi il contenuto di `_dev` risulta disallineato. In quel caso con questo comando `_dev` viene svuotata e ricreata da capo. Si può usare questo comando in modo safe e in qualsiasi momento.
+
 ### Struttura cartelle
 
 Lavorare esclusivamente nella cartella `_src`, ciò che vedi sul browser corrisponde al compilato che si trova nella cartella `_dev` (che non dovrai mai modificare).
@@ -29,11 +34,16 @@ Nella cartella `_src`:
 - `js` contiene i JS, può contenere sottocartelle chiamate come preferisci
 - `scss` contiene gli scss.
 
-Con grunt avviato, il watch si occuperà automaticamente di:
+Con grunt avviato, il watch si occuperà automaticamente di tutto:
 
-- compilare il css
+- compilare gli scss
 - ottimizzare le immagini e copiare le favicons
 - copiare l'html elaborandone gli includes
 - copiare i js
+- copiare i fonts
+
+Può succedere che un'automazione per qualche motivo non parta, oppure si cancellano file in `_src` e quindi il contenuto di `_dev` risulta disallineato. In ogni caso con il comando `grunt build` la cartella `_dev` viene svuotata e ricreata da capo. Si può usare questo comando in modo safe e in qualsiasi momento.
+
+
 
 

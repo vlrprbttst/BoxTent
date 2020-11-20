@@ -42,7 +42,13 @@ module.exports = function(grunt) {
                     spawn: false,
                 }
             },
-
+            fonts: {
+                files: ['<%= source %>/<%= fonts %>/**/*'],
+                tasks: ['copy:the_fonts'],
+                options: {
+                    spawn: false,
+                }
+            },
             scss: {
                 files: ['<%= source %>/<%= scss %>/**/*.scss'],
                 tasks: ['newer:sass:dist', 'postcss:dev'],
